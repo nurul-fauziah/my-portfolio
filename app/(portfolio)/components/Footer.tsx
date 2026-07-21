@@ -42,10 +42,10 @@ export function Footer({
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="border-t border-[#D2C4B4] py-8"
+      className="border-t border-[var(--border)] py-8"
     >
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-        <p className="text-sm text-[#8A7C70]">
+        <p className="text-sm text-[var(--text-muted)]">
           &copy; 2026 {copyrightName}. All rights reserved.
         </p>
 
@@ -58,7 +58,7 @@ export function Footer({
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ y: -3, color: "#81A6C6" }}
-                className="text-[#8A7C70] transition"
+                className="text-[var(--text-muted)] transition"
                 aria-label={social!.label}
               >
                 {social!.icon}
@@ -70,7 +70,7 @@ export function Footer({
         <motion.a
           href="#"
           whileHover={{ y: -3 }}
-          className="flex items-center gap-2 text-sm text-[#8A7C70] transition hover:text-[#81A6C6]"
+          className="flex items-center gap-2 text-sm text-[var(--text-muted)] transition hover:text-[#81A6C6]"
         >
           <ArrowUp className="h-4 w-4" />
           Back to top

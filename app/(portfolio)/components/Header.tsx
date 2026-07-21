@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import type { NavLink } from "../lib/types";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 type HeaderProps = {
   siteName?: string;
@@ -25,20 +26,20 @@ export function Header({
       initial={{ opacity: 0, y: -18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-50 mb-14 border-b border-[#D2C4B4]/70 bg-[#F3E3D0]/70 backdrop-blur-xl"
+      className="sticky top-0 z-50 mb-14 border-b border-[var(--border)]/70 bg-[var(--bg-primary)]/70 backdrop-blur-xl"
     >
       <div className="flex items-center justify-between py-4">
         <div>
           <motion.p
             whileHover={{ letterSpacing: "0.42em" }}
-            className="text-sm uppercase tracking-[0.35em] text-[#6E6257]"
+            className="text-sm uppercase tracking-[0.35em] text-[var(--text-secondary)]"
           >
             {siteName}
           </motion.p>
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden gap-8 text-sm text-[#6E6257] md:flex">
+        <nav className="hidden items-center gap-8 text-sm text-[var(--text-secondary)] md:flex">
           {navLinks.map((link) => (
             <motion.a
               key={link.label}
@@ -50,16 +51,20 @@ export function Header({
               {link.label}
             </motion.a>
           ))}
+          <DarkModeToggle />
         </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-[#6E6257] md:hidden"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        {/* Mobile controls */}
+        <div className="flex items-center gap-3 md:hidden">
+          <DarkModeToggle />
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-[var(--text-secondary)]"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile nav dropdown */}
@@ -70,7 +75,7 @@ export function Header({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-[#D2C4B4]/50 md:hidden"
+            className="overflow-hidden border-t border-[var(--border)]/50 md:hidden"
           >
             <div className="flex flex-col gap-1 py-4">
               {navLinks.map((link, index) => (
@@ -81,7 +86,7 @@ export function Header({
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.06 }}
-                  className="rounded-lg px-4 py-3 text-sm text-[#6E6257] transition hover:bg-[#F3E3D0] hover:text-[#81A6C6]"
+                  className="rounded-lg px-4 py-3 text-sm text-[var(--text-secondary)] transition hover:bg-[var(--bg-secondary)] hover:text-[#81A6C6]"
                 >
                   {link.label}
                 </motion.a>

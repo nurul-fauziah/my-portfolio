@@ -54,7 +54,7 @@ export function Hero({
 
           <motion.h1
             variants={item}
-            className="max-w-5xl font-serif text-5xl leading-[1] tracking-tight text-[#3E342C] md:text-7xl lg:text-8xl"
+            className="max-w-5xl font-serif text-5xl leading-[1] tracking-tight text-[var(--text-primary)] md:text-7xl lg:text-8xl"
           >
             {title}
           </motion.h1>
@@ -62,7 +62,7 @@ export function Hero({
 
         <motion.p
           variants={item}
-          className="max-w-2xl text-base leading-8 text-[#6E6257] md:text-lg"
+          className="max-w-2xl text-base leading-8 text-[var(--text-secondary)] md:text-lg"
         >
           {description}
         </motion.p>
@@ -85,15 +85,11 @@ export function Hero({
       >
         <motion.div
           animate={{ y: [0, -8, 0] }}
-          transition={{
-            duration: 5.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Card className="shadow-[0_20px_60px_rgba(62,52,44,0.08)]">
+          <Card className="shadow-[0_20px_60px_rgba(62,52,44,0.08)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
             <CardContent className="space-y-5 p-6">
-              <div className="flex items-center justify-between text-sm text-[#8A7C70]">
+              <div className="flex items-center justify-between text-sm text-[var(--text-muted)]">
                 <span>{profileBadge}</span>
                 <span>{availabilityBadge}</span>
               </div>
@@ -102,7 +98,7 @@ export function Hero({
                 <p className="text-sm uppercase tracking-[0.28em] text-[#81A6C6]">
                   Location
                 </p>
-                <div className="mt-2 flex items-center gap-2 text-[#3E342C]">
+                <div className="mt-2 flex items-center gap-2 text-[var(--text-primary)]">
                   <MapPin className="h-4 w-4 text-[#81A6C6]" />
                   <span>{location}</span>
                 </div>
@@ -117,7 +113,7 @@ export function Hero({
                     <motion.span
                       key={focusItem}
                       whileHover={{ y: -2 }}
-                      className="rounded-full border border-[#D2C4B4] bg-[#F3E3D0] px-3 py-1 text-sm text-[#6E6257]"
+                      className="rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-1 text-sm text-[var(--text-secondary)]"
                     >
                       {focusItem}
                     </motion.span>

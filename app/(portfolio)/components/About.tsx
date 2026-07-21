@@ -22,7 +22,7 @@ export function About({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.22 }}
-      className="grid gap-8 border-t border-[#D2C4B4] py-20 lg:grid-cols-[0.8fr_1.2fr]"
+      className="grid gap-8 border-t border-[var(--border)] py-20 lg:grid-cols-[0.8fr_1.2fr]"
     >
       <div>
         <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
@@ -36,7 +36,7 @@ export function About({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.75 }}
-          className="max-w-3xl font-serif text-2xl leading-tight text-[#3E342C] md:text-3xl"
+          className="max-w-3xl font-serif text-2xl leading-tight text-[var(--text-primary)] md:text-3xl"
         >
           &ldquo;{quote}&rdquo;
         </motion.blockquote>
@@ -46,7 +46,7 @@ export function About({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="max-w-3xl space-y-4 text-[#6E6257]"
+          className="max-w-3xl space-y-4 text-[var(--text-secondary)]"
         >
           {paragraphs.map((text, i) => (
             <p key={i}>{text}</p>

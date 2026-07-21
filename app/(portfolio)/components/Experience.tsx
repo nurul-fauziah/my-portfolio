@@ -27,7 +27,7 @@ export function Experience({
   ],
 }: ExperienceProps) {
   return (
-    <section className="border-t border-[#D2C4B4] py-20">
+    <section className="border-t border-[var(--border)] py-20">
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <motion.div
           variants={sectionReveal}
@@ -53,14 +53,14 @@ export function Experience({
                 ease: [0.22, 1, 0.36, 1],
               }}
               whileHover={{ y: -4 }}
-              className="rounded-[28px] border border-[#D2C4B4] bg-[#F8F1E8] p-6 shadow-[0_10px_30px_rgba(62,52,44,0.04)]"
+              className="rounded-[28px] border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-[0_10px_30px_rgba(62,52,44,0.04)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
             >
-              <p className="text-sm text-[#8A7C70]">{exp.period}</p>
-              <h3 className="mt-2 font-serif text-2xl text-[#3E342C]">
+              <p className="text-sm text-[var(--text-muted)]">{exp.period}</p>
+              <h3 className="mt-2 font-serif text-2xl text-[var(--text-primary)]">
                 {exp.role}
               </h3>
-              <p className="mt-1 text-[#6E6257]">{exp.company}</p>
-              <p className="mt-4 max-w-2xl text-[#6E6257]">
+              <p className="mt-1 text-[var(--text-secondary)]">{exp.company}</p>
+              <p className="mt-4 max-w-2xl text-[var(--text-secondary)]">
                 {exp.description}
               </p>
             </motion.div>

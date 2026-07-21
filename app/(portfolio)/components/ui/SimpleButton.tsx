@@ -22,7 +22,7 @@ export function SimpleButton({
     "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium tracking-[0.08em] transition duration-300";
   const variantClass =
     variant === "outline"
-      ? "border border-[#D2C4B4] bg-transparent text-[#3E342C] hover:bg-[#AACDDC]/20"
+      ? "border border-[var(--border)] bg-transparent text-[var(--text-primary)] hover:bg-[#AACDDC]/20 dark:hover:bg-[#81A6C6]/10"
       : "bg-[#81A6C6] text-white hover:bg-[#7096B5]";
 
   const combinedClass = `${baseClass} ${variantClass} ${className}`;

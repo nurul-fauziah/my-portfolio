@@ -50,7 +50,7 @@ export function Contact({
   ];
 
   return (
-    <section id="contact" className="border-t border-[#D2C4B4] py-20">
+    <section id="contact" className="border-t border-[var(--border)] py-20">
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <motion.div
           variants={sectionReveal}
@@ -71,10 +71,10 @@ export function Contact({
           className="space-y-8"
         >
           <div>
-            <h2 className="font-serif text-3xl tracking-tight text-[#3E342C] md:text-5xl">
+            <h2 className="font-serif text-3xl tracking-tight text-[var(--text-primary)] md:text-5xl">
               {heading}
             </h2>
-            <p className="mt-4 max-w-2xl text-[#6E6257]">{description}</p>
+            <p className="mt-4 max-w-2xl text-[var(--text-secondary)]">{description}</p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -83,22 +83,18 @@ export function Contact({
                 <motion.a
                   key={contact.label}
                   href={contact.href}
-                  target={
-                    contact.href.startsWith("http") ? "_blank" : undefined
-                  }
-                  rel={
-                    contact.href.startsWith("http") ? "noreferrer" : undefined
-                  }
+                  target={contact.href.startsWith("http") ? "_blank" : undefined}
+                  rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
                   initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.08 }}
                   whileHover={{ y: -6, scale: 1.01 }}
-                  className="rounded-[24px] border border-[#D2C4B4] bg-[#F8F1E8] p-5 transition hover:bg-[#EFE4D7]"
+                  className="rounded-[24px] border border-[var(--border)] bg-[var(--bg-card)] p-5 transition hover:bg-[var(--bg-secondary)]"
                 >
                   {contact.icon}
-                  <p className="text-sm text-[#8A7C70]">{contact.label}</p>
-                  <p className="mt-1 text-lg text-[#3E342C]">
+                  <p className="text-sm text-[var(--text-muted)]">{contact.label}</p>
+                  <p className="mt-1 text-lg text-[var(--text-primary)]">
                     {contact.value}
                   </p>
                 </motion.a>
@@ -110,11 +106,11 @@ export function Contact({
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.08 }}
                   whileHover={{ y: -6, scale: 1.01 }}
-                  className="rounded-[24px] border border-[#D2C4B4] bg-[#F8F1E8] p-5"
+                  className="rounded-[24px] border border-[var(--border)] bg-[var(--bg-card)] p-5"
                 >
                   {contact.icon}
-                  <p className="text-sm text-[#8A7C70]">{contact.label}</p>
-                  <p className="mt-1 text-lg text-[#3E342C]">
+                  <p className="text-sm text-[var(--text-muted)]">{contact.label}</p>
+                  <p className="mt-1 text-lg text-[var(--text-primary)]">
                     {contact.value}
                   </p>
                 </motion.div>

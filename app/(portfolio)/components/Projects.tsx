@@ -6,7 +6,7 @@ import { ProjectCard, type ProjectData } from "./ProjectCard";
 
 export function Projects({ projects, heading }: { projects: ProjectData[]; heading?: string }) {
   return (
-    <section id="works" className="border-t border-[#D2C4B4] py-20">
+    <section id="works" className="border-t border-[var(--border)] py-20">
       <div className="mb-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <motion.div
           variants={sectionReveal}
@@ -25,7 +25,7 @@ export function Projects({ projects, heading }: { projects: ProjectData[]; headi
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <h2 className="max-w-3xl font-serif text-3xl tracking-tight text-[#3E342C] md:text-5xl">
+          <h2 className="max-w-3xl font-serif text-3xl tracking-tight text-[var(--text-primary)] md:text-5xl">
             {heading || 'A curated collection of digital work shaped with clarity and restraint.'}
           </h2>
         </motion.div>
@@ -41,8 +41,8 @@ export function Projects({ projects, heading }: { projects: ProjectData[]; headi
             />
           ))
         ) : (
-          <div className="rounded-[30px] border border-dashed border-[#D2C4B4] bg-[#F8F1E8]/50 p-12 text-center">
-            <p className="text-lg text-[#8A7C70]">
+          <div className="rounded-[30px] border border-dashed border-[var(--border)] bg-[var(--bg-secondary)]/50 p-12 text-center">
+            <p className="text-lg text-[var(--text-muted)]">
               Belum ada project. Tambahkan project pertama melalui{" "}
               <a
                 href="/admin"
