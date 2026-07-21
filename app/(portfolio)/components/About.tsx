@@ -3,7 +3,18 @@
 import { motion } from "framer-motion";
 import { sectionReveal } from "../lib/animations";
 
-export function About() {
+type AboutProps = {
+  quote?: string;
+  paragraphs?: string[];
+};
+
+export function About({
+  quote = "Thoughtful design, measured details, and digital experiences that age gracefully.",
+  paragraphs = [
+    "I approach every project with equal attention to function and feeling. The goal is not only to make something work, but to make it feel effortless, refined, and quietly memorable.",
+    "My style leans toward clean layouts, restrained motion, balanced typography, and a visual language that feels timeless rather than trendy.",
+  ],
+}: AboutProps) {
   return (
     <motion.section
       id="about"
@@ -27,8 +38,7 @@ export function About() {
           transition={{ duration: 0.75 }}
           className="max-w-3xl font-serif text-2xl leading-tight text-[#3E342C] md:text-3xl"
         >
-          &ldquo;Thoughtful design, measured details, and digital experiences
-          that age gracefully.&rdquo;
+          &ldquo;{quote}&rdquo;
         </motion.blockquote>
 
         <motion.div
@@ -38,16 +48,9 @@ export function About() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="max-w-3xl space-y-4 text-[#6E6257]"
         >
-          <p>
-            I approach every project with equal attention to function and
-            feeling. The goal is not only to make something work, but to
-            make it feel effortless, refined, and quietly memorable.
-          </p>
-          <p>
-            My style leans toward clean layouts, restrained motion, balanced
-            typography, and a visual language that feels timeless rather
-            than trendy.
-          </p>
+          {paragraphs.map((text, i) => (
+            <p key={i}>{text}</p>
+          ))}
         </motion.div>
       </div>
     </motion.section>

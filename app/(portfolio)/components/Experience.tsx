@@ -2,25 +2,30 @@
 
 import { motion } from "framer-motion";
 import { sectionReveal } from "../lib/animations";
+import type { ExperienceData } from "../lib/types";
 
-const experience = [
-  {
-    period: "2025 — Present",
-    role: "Frontend / Full-Stack Developer",
-    company: "Your Company",
-    description:
-      "Building scalable web experiences with a focus on smooth interaction, maintainable architecture, and premium visual quality.",
-  },
-  {
-    period: "2024 — 2025",
-    role: "Frontend Developer",
-    company: "Creative Studio",
-    description:
-      "Designed and developed visually refined interfaces with attention to responsiveness, performance, and smooth user interaction.",
-  },
-];
+type ExperienceProps = {
+  items?: ExperienceData[];
+};
 
-export function Experience() {
+export function Experience({
+  items = [
+    {
+      period: "2025 — Present",
+      role: "Frontend / Full-Stack Developer",
+      company: "Your Company",
+      description:
+        "Building scalable web experiences with a focus on smooth interaction, maintainable architecture, and premium visual quality.",
+    },
+    {
+      period: "2024 — 2025",
+      role: "Frontend Developer",
+      company: "Creative Studio",
+      description:
+        "Designed and developed visually refined interfaces with attention to responsiveness, performance, and smooth user interaction.",
+    },
+  ],
+}: ExperienceProps) {
   return (
     <section className="border-t border-[#D2C4B4] py-20">
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -36,9 +41,9 @@ export function Experience() {
         </motion.div>
 
         <div className="space-y-6">
-          {experience.map((exp, index) => (
+          {items.map((exp, index) => (
             <motion.div
-              key={exp.role}
+              key={exp.role + exp.company}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}

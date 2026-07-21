@@ -6,7 +6,29 @@ import { container, item } from "../lib/animations";
 import { Card, CardContent } from "./ui/Card";
 import { SimpleButton } from "./ui/SimpleButton";
 
-export function Hero() {
+type HeroProps = {
+  subtitle?: string;
+  title?: string;
+  description?: string;
+  primaryCta?: string;
+  secondaryCta?: string;
+  profileBadge?: string;
+  availabilityBadge?: string;
+  location?: string;
+  focusAreas?: string[];
+};
+
+export function Hero({
+  subtitle = "Personal Portfolio",
+  title = "Elegant digital experiences with timeless character.",
+  description = "I build websites and digital products that feel polished, calm, and intentional—blending modern development with a refined visual sensibility.",
+  primaryCta = "View Projects",
+  secondaryCta = "Download Resume",
+  profileBadge = "Verified Profile",
+  availabilityBadge = "Available Worldwide",
+  location = "Indonesia",
+  focusAreas = ["Web Development", "UI/UX Design", "Portfolio Sites", "Landing Pages"],
+}: HeroProps) {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 80]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
@@ -27,14 +49,14 @@ export function Hero() {
             variants={item}
             className="text-xs uppercase tracking-[0.4em] text-[#81A6C6]"
           >
-            Personal Portfolio
+            {subtitle}
           </motion.p>
 
           <motion.h1
             variants={item}
             className="max-w-5xl font-serif text-5xl leading-[1] tracking-tight text-[#3E342C] md:text-7xl lg:text-8xl"
           >
-            Elegant digital experiences with timeless character.
+            {title}
           </motion.h1>
         </div>
 
@@ -42,16 +64,16 @@ export function Hero() {
           variants={item}
           className="max-w-2xl text-base leading-8 text-[#6E6257] md:text-lg"
         >
-          I build websites and digital products that feel polished, calm,
-          and intentional—blending modern development with a refined visual
-          sensibility.
+          {description}
         </motion.p>
 
         <motion.div variants={item} className="flex flex-wrap gap-3 pt-2">
-          <SimpleButton>
-            View Projects <ArrowUpRight className="ml-2 h-4 w-4" />
+          <SimpleButton href="#works">
+            {primaryCta} <ArrowUpRight className="ml-2 h-4 w-4" />
           </SimpleButton>
-          <SimpleButton variant="outline">Download Resume</SimpleButton>
+          <SimpleButton variant="outline" href="#contact">
+            {secondaryCta}
+          </SimpleButton>
         </motion.div>
       </motion.div>
 
@@ -72,8 +94,8 @@ export function Hero() {
           <Card className="shadow-[0_20px_60px_rgba(62,52,44,0.08)]">
             <CardContent className="space-y-5 p-6">
               <div className="flex items-center justify-between text-sm text-[#8A7C70]">
-                <span>Verified Profile</span>
-                <span>Available Worldwide</span>
+                <span>{profileBadge}</span>
+                <span>{availabilityBadge}</span>
               </div>
 
               <div>
@@ -82,7 +104,7 @@ export function Hero() {
                 </p>
                 <div className="mt-2 flex items-center gap-2 text-[#3E342C]">
                   <MapPin className="h-4 w-4 text-[#81A6C6]" />
-                  <span>Indonesia</span>
+                  <span>{location}</span>
                 </div>
               </div>
 
@@ -91,12 +113,7 @@ export function Hero() {
                   Focus
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {[
-                    "Web Development",
-                    "UI/UX Design",
-                    "Portfolio Sites",
-                    "Landing Pages",
-                  ].map((focusItem) => (
+                  {focusAreas.map((focusItem) => (
                     <motion.span
                       key={focusItem}
                       whileHover={{ y: -2 }}

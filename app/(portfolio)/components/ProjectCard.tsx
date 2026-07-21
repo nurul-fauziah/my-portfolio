@@ -3,16 +3,9 @@
 import { motion } from "framer-motion";
 import { sectionReveal } from "../lib/animations";
 import { Card, CardContent } from "./ui/Card";
+import type { ProjectData } from "../lib/types";
 
-export type ProjectData = {
-  title: string;
-  tag: string;
-  description: string;
-  tech: string[];
-  image?: string;
-  projectUrl?: string;
-  githubUrl?: string;
-};
+export type { ProjectData };
 
 export function ProjectCard({
   project,

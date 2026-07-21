@@ -5,34 +5,50 @@ import { Mail, MapPin } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { sectionReveal } from "../lib/animations";
 
-const contacts = [
-  {
-    icon: <Mail className="mb-3 h-5 w-5 text-[#81A6C6]" />,
-    label: "Email",
-    value: "your@email.com",
-    href: "mailto:your@email.com",
-  },
-  {
-    icon: <FaLinkedin className="mb-3 h-5 w-5 text-[#81A6C6]" />,
-    label: "LinkedIn",
-    value: "linkedin.com/in/yourname",
-    href: "https://linkedin.com/in/yourname",
-  },
-  {
-    icon: <FaGithub className="mb-3 h-5 w-5 text-[#81A6C6]" />,
-    label: "GitHub",
-    value: "github.com/yourname",
-    href: "https://github.com/yourname",
-  },
-  {
-    icon: <MapPin className="mb-3 h-5 w-5 text-[#81A6C6]" />,
-    label: "Base",
-    value: "Indonesia · Remote Friendly",
-    href: "",
-  },
-];
+type ContactProps = {
+  heading?: string;
+  description?: string;
+  email?: string;
+  linkedin?: string;
+  github?: string;
+  location?: string;
+};
 
-export function Contact() {
+export function Contact({
+  heading = "Let's build something with substance and style.",
+  description = "Whether it's a personal portfolio, a product site, or a polished digital presence for your brand, I'm open to creating work that feels thoughtful and lasting.",
+  email = "your@email.com",
+  linkedin = "linkedin.com/in/yourname",
+  github = "github.com/yourname",
+  location = "Indonesia · Remote Friendly",
+}: ContactProps) {
+  const contacts = [
+    {
+      icon: <Mail className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      label: "Email",
+      value: email,
+      href: `mailto:${email}`,
+    },
+    {
+      icon: <FaLinkedin className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      label: "LinkedIn",
+      value: linkedin,
+      href: linkedin.startsWith("http") ? linkedin : `https://${linkedin}`,
+    },
+    {
+      icon: <FaGithub className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      label: "GitHub",
+      value: github,
+      href: github.startsWith("http") ? github : `https://${github}`,
+    },
+    {
+      icon: <MapPin className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      label: "Base",
+      value: location,
+      href: "",
+    },
+  ];
+
   return (
     <section id="contact" className="border-t border-[#D2C4B4] py-20">
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -56,13 +72,9 @@ export function Contact() {
         >
           <div>
             <h2 className="font-serif text-3xl tracking-tight text-[#3E342C] md:text-5xl">
-              Let&apos;s build something with substance and style.
+              {heading}
             </h2>
-            <p className="mt-4 max-w-2xl text-[#6E6257]">
-              Whether it&apos;s a personal portfolio, a product site, or a
-              polished digital presence for your brand, I&apos;m open to
-              creating work that feels thoughtful and lasting.
-            </p>
+            <p className="mt-4 max-w-2xl text-[#6E6257]">{description}</p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -75,9 +87,7 @@ export function Contact() {
                     contact.href.startsWith("http") ? "_blank" : undefined
                   }
                   rel={
-                    contact.href.startsWith("http")
-                      ? "noreferrer"
-                      : undefined
+                    contact.href.startsWith("http") ? "noreferrer" : undefined
                   }
                   initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
