@@ -12,8 +12,9 @@ export default async function PortfolioPage() {
   const [projectsResult, experiencesResult, settings] = await Promise.all([
     payload.find({
       collection: 'projects',
+      where: { featured: { equals: true } },
       sort: '-publishedAt',
-      limit: 50,
+      limit: 5,
     }),
     payload.find({
       collection: 'experiences',
@@ -27,6 +28,7 @@ export default async function PortfolioPage() {
 
   const projects: ProjectData[] = projectsResult.docs.map((doc: Project) => ({
     title: doc.title,
+    slug: doc.slug,
     tag: doc.tag || 'Featured Case Study',
     description: doc.description,
     tech: (doc.tech || []).map((t) => t.name),
@@ -36,6 +38,7 @@ export default async function PortfolioPage() {
         : undefined,
     projectUrl: doc.projectUrl || undefined,
     githubUrl: doc.githubUrl || undefined,
+    featured: doc.featured || false,
   }))
 
   const experiences = experiencesResult.docs.map((doc: Experience) => ({

@@ -4,7 +4,7 @@ export const Projects: CollectionConfig = {
   slug: 'projects',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'tag', 'publishedAt'],
+    defaultColumns: ['title', 'tag', 'featured', 'publishedAt'],
   },
   fields: [
     {
@@ -22,6 +22,15 @@ export const Projects: CollectionConfig = {
       },
     },
     {
+      name: 'featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description: 'Tampilkan di homepage (maks 3-5 project)',
+      },
+    },
+    {
       name: 'tag',
       type: 'text',
       defaultValue: 'Featured Case Study',
@@ -30,6 +39,14 @@ export const Projects: CollectionConfig = {
       name: 'description',
       type: 'textarea',
       required: true,
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      editor: undefined, // will use global editor
+      admin: {
+        description: 'Detail content project (tampil di halaman detail)',
+      },
     },
     {
       name: 'tech',
@@ -46,6 +63,25 @@ export const Projects: CollectionConfig = {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
+    },
+    {
+      name: 'gallery',
+      type: 'array',
+      admin: {
+        description: 'Screenshot tambahan untuk halaman detail',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'caption',
+          type: 'text',
+        },
+      ],
     },
     {
       name: 'projectUrl',

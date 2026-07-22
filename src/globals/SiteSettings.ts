@@ -23,7 +23,7 @@ export const SiteSettings: GlobalConfig = {
               type: 'array',
               defaultValue: [
                 { label: 'About', href: '#about' },
-                { label: 'Works', href: '#works' },
+                { label: 'Projects', href: '#projects' },
                 { label: 'Contact', href: '#contact' },
               ],
               fields: [
@@ -91,7 +91,7 @@ export const SiteSettings: GlobalConfig = {
           ],
         },
         {
-          label: 'Works',
+          label: 'Projects',
           fields: [
             {
               name: 'worksHeading',

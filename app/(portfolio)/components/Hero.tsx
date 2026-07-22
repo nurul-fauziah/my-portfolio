@@ -68,7 +68,7 @@ export function Hero({
         </motion.p>
 
         <motion.div variants={item} className="flex flex-wrap gap-3 pt-2">
-          <SimpleButton href="#works">
+          <SimpleButton href="#projects">
             {primaryCta} <ArrowUpRight className="ml-2 h-4 w-4" />
           </SimpleButton>
           <SimpleButton variant="outline" href="#contact">

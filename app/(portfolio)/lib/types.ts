@@ -36,10 +36,14 @@ export type ExperienceData = {
 
 export type ProjectData = {
   title: string;
+  slug: string;
   tag: string;
   description: string;
   tech: string[];
   image?: string;
   projectUrl?: string;
   githubUrl?: string;
+  featured?: boolean;
+  content?: unknown;
+  gallery?: Array<{ image: string; caption?: string }>;
 };

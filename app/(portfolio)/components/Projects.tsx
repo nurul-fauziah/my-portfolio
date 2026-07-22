@@ -1,12 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { sectionReveal } from "../lib/animations";
 import { ProjectCard, type ProjectData } from "./ProjectCard";
+import Link from "next/link";
 
-export function Projects({ projects, heading }: { projects: ProjectData[]; heading?: string }) {
+export function Projects({
+  projects,
+  heading,
+  limit = 3,
+}: {
+  projects: ProjectData[];
+  heading?: string;
+  limit?: number;
+}) {
+  const displayed = projects.slice(0, limit);
+  const hasMore = projects.length > limit;
+
   return (
-    <section id="works" className="border-t border-[var(--border)] py-20">
+    <section id="projects" className="border-t border-[var(--border)] py-20">
       <div className="mb-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <motion.div
           variants={sectionReveal}
@@ -15,7 +28,7 @@ export function Projects({ projects, heading }: { projects: ProjectData[]; headi
           viewport={{ once: true, amount: 0.2 }}
         >
           <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
-            Selected Works
+            Selected Projects
           </p>
         </motion.div>
 
@@ -26,16 +39,16 @@ export function Projects({ projects, heading }: { projects: ProjectData[]; headi
           viewport={{ once: true, amount: 0.2 }}
         >
           <h2 className="max-w-3xl font-serif text-3xl tracking-tight text-[var(--text-primary)] md:text-5xl">
-            {heading || 'A curated collection of digital work shaped with clarity and restraint.'}
+            {heading || "A curated collection of digital work shaped with clarity and restraint."}
           </h2>
         </motion.div>
       </div>
 
       <div className="grid gap-6">
-        {projects.length > 0 ? (
-          projects.map((project, index) => (
+        {displayed.length > 0 ? (
+          displayed.map((project, index) => (
             <ProjectCard
-              key={project.title}
+              key={project.slug}
               project={project}
               index={index}
             />
@@ -55,6 +68,31 @@ export function Projects({ projects, heading }: { projects: ProjectData[]; headi
           </div>
         )}
       </div>
+
+      {/* View All button */}
+      {hasMore && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-12 text-center"
+        >
+          <Link href="/projects">
+            <motion.span
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-8 py-3.5 text-sm font-medium tracking-[0.08em] text-[var(--text-primary)] transition hover:border-[#81A6C6] hover:text-[#81A6C6]"
+            >
+              View All Projects
+              <ArrowUpRight className="h-4 w-4" />
+            </motion.span>
+          </Link>
+          <p className="mt-3 text-xs text-[var(--text-muted)]">
+            Showing {displayed.length} of {projects.length} projects
+          </p>
+        </motion.div>
+      )}
     </section>
   );
 }
