@@ -88,6 +88,12 @@ export const SiteSettings: GlobalConfig = {
               ],
               fields: [{ name: 'name', type: 'text', required: true }],
             },
+            {
+              name: 'cursorRevealImage',
+              type: 'upload',
+              relationTo: 'media',
+              admin: { description: 'Background image revealed by cursor movement (wavy reveal effect across all sections)' },
+            },
           ],
         },
         {

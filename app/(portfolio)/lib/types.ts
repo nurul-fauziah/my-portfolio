@@ -37,6 +37,7 @@ export type SiteSettingsData = {
   contactLocation: string;
   copyrightName: string;
   worksHeading: string;
+  cursorRevealImage?: string;
   theme: {
     light: ThemeColors;
     dark: ThemeColors;

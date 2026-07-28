@@ -137,6 +137,10 @@ export default async function PortfolioPage() {
     contactLocation: s.contactLocation || '',
     copyrightName: s.copyrightName || 'Your Name',
     worksHeading: s.worksHeading || 'A curated collection of digital work shaped with clarity and restraint.',
+    cursorRevealImage:
+      s.cursorRevealImage && typeof s.cursorRevealImage === 'object' && 'url' in s.cursorRevealImage
+        ? (s.cursorRevealImage.url as string)
+        : undefined,
     theme,
   }
 

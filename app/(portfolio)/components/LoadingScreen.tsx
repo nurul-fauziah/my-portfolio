@@ -9,7 +9,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
   useEffect(() => {
     const startTime = Date.now();
-    const totalDuration = 2500; // ~2.5 detik — sweet spot untuk splash screen
+    const totalDuration = 800; // 0.8s — fast splash
 
     const timer = setInterval(() => {
       setProgress((prev) => {
@@ -17,8 +17,8 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           clearInterval(timer);
           setTimeout(() => {
             setShow(false);
-            setTimeout(onComplete, 700);
-          }, 500);
+            setTimeout(onComplete, 300);
+          }, 100);
           return 100;
         }
 
@@ -27,7 +27,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         const jitter = (Math.random() - 0.5) * 6;
         return Math.min(prev + (targetProgress - prev) * 0.15 + jitter, 100);
       });
-    }, 60);
+    }, 30);
 
     return () => clearInterval(timer);
   }, [onComplete]);
@@ -37,7 +37,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       {show && (
         <motion.div
           exit={{ opacity: 0, y: -30 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F3E3D0]"
         >
           {/* Background blobs */}

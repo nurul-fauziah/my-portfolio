@@ -17,6 +17,7 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { CursorGlow } from "./components/CursorGlow";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { CursorRevealBackground } from "./components/CursorRevealBackground";
 import type { ProjectData, ExperienceData, SiteSettingsData } from "./lib/types";
 
 export type { ProjectData };
@@ -39,12 +40,15 @@ export default function PortfolioClient({
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       <ScrollProgress />
       <CursorGlow />
+      {siteSettings.cursorRevealImage && (
+        <CursorRevealBackground src={siteSettings.cursorRevealImage} />
+      )}
 
       <motion.main
         initial={{ opacity: 0, y: 30 }}
         animate={loaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        className="relative min-h-screen overflow-x-hidden bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent)] selection:text-white"
+        className="relative z-10 min-h-screen overflow-x-hidden bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent)] selection:text-white"
       >
         <BackgroundBlobs />
 

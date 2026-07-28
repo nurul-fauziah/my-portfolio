@@ -41,3 +41,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Cursor reveal wavy */
+@keyframes cr-wavy {
+  0%   { transform: scale(1)    rotate(0deg);   border-radius: 42% 58% 62% 38% / 46% 52% 48% 54%; }
+  25%  { transform: scale(1.06) rotate(3deg);   border-radius: 55% 45% 38% 62% / 60% 40% 55% 45%; }
+  50%  { transform: scale(0.94) rotate(-2deg);  border-radius: 38% 62% 55% 45% / 42% 58% 45% 55%; }
+  75%  { transform: scale(1.04) rotate(1deg);   border-radius: 60% 40% 45% 55% / 55% 45% 60% 40%; }
+  100% { transform: scale(1)    rotate(0deg);   border-radius: 42% 58% 62% 38% / 46% 52% 48% 54%; }
+}
