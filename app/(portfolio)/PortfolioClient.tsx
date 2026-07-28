@@ -14,6 +14,7 @@ import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { LoadingScreen } from "./components/LoadingScreen";
+import { MaintenancePopup } from "./components/MaintenancePopup";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { CursorGlow } from "./components/CursorGlow";
 import { ThemeProvider } from "./components/ThemeProvider";
@@ -34,10 +35,22 @@ export default function PortfolioClient({
   siteSettings,
 }: PortfolioClientProps) {
   const [loaded, setLoaded] = useState(false);
+  const [showMaintenance, setShowMaintenance] = useState(false);
+
+  const handleLoadComplete = () => {
+    setLoaded(true);
+    // Delay maintenance popup for smooth transition
+    setTimeout(() => setShowMaintenance(true), 800);
+  };
+
+  const handleCloseMaintenance = () => {
+    setShowMaintenance(false);
+  };
 
   return (
     <ThemeProvider light={siteSettings.theme.light} dark={siteSettings.theme.dark}>
-      {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
+      {!loaded && <LoadingScreen onComplete={handleLoadComplete} />}
+      <MaintenancePopup show={showMaintenance} onClose={handleCloseMaintenance} />
       <ScrollProgress />
       <CursorGlow />
       {siteSettings.cursorRevealImage && (

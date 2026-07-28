@@ -9,7 +9,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
   useEffect(() => {
     const startTime = Date.now();
-    const totalDuration = 800; // 0.8s — fast splash
+    const totalDuration = 2800; // ~3s — smooth splash
 
     const timer = setInterval(() => {
       setProgress((prev) => {
@@ -17,15 +17,17 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           clearInterval(timer);
           setTimeout(() => {
             setShow(false);
-            setTimeout(onComplete, 300);
-          }, 100);
+            // Delay before showing maintenance popup
+            setTimeout(onComplete, 600);
+          }, 400);
           return 100;
         }
 
         const elapsed = Date.now() - startTime;
+        // Smooth ease-out cubic
         const targetProgress = 100 * (1 - Math.pow(1 - elapsed / totalDuration, 3));
-        const jitter = (Math.random() - 0.5) * 6;
-        return Math.min(prev + (targetProgress - prev) * 0.15 + jitter, 100);
+        const jitter = (Math.random() - 0.5) * 3;
+        return Math.min(prev + (targetProgress - prev) * 0.12 + jitter, 100);
       });
     }, 30);
 
@@ -36,8 +38,8 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     <AnimatePresence>
       {show && (
         <motion.div
-          exit={{ opacity: 0, y: -30 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F3E3D0]"
         >
           {/* Background blobs */}
@@ -64,7 +66,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             <motion.p
               initial={{ opacity: 0, letterSpacing: "0.1em" }}
               animate={{ opacity: 1, letterSpacing: "0.5em" }}
-              transition={{ duration: 1.2, delay: 0.2 }}
+              transition={{ duration: 1.5, delay: 0.3 }}
               className="text-sm uppercase text-[var(--accent)]"
             >
               Welcome
@@ -73,7 +75,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
               className="mt-4 font-serif text-4xl text-[#3E342C] md:text-6xl"
             >
               Nurul Fauziah
@@ -90,7 +92,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                   key={word}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1 + i * 0.2 }}
+                  transition={{ delay: 1.3 + i * 0.25 }}
                   className="text-sm uppercase tracking-[0.3em] text-[#6E6257]"
                 >
                   {word}
@@ -103,7 +105,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.9 }}
             className="relative z-10 mt-12 w-48"
           >
             <div className="h-[2px] w-full overflow-hidden rounded-full bg-[#D2C4B4]">
