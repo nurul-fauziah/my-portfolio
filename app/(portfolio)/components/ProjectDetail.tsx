@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 import type { ProjectData } from "../lib/types";
@@ -20,7 +20,7 @@ export function ProjectDetail({ project }: { project: ProjectData }) {
           <div className="flex items-center justify-between">
             <Link
               href="/projects"
-              className="flex items-center gap-2 text-sm text-[var(--text-secondary)] transition hover:text-[#81A6C6]"
+              className="flex items-center gap-2 text-sm text-[var(--text-secondary)] transition hover:text-[var(--accent)]"
             >
               <ArrowLeft className="h-4 w-4" />
               All Projects
@@ -38,7 +38,7 @@ export function ProjectDetail({ project }: { project: ProjectData }) {
           transition={{ duration: 0.8 }}
           className="mb-12"
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
+          <p className="text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
             {project.tag}
           </p>
           <h1 className="mt-4 font-serif text-4xl tracking-tight text-[var(--text-primary)] md:text-6xl">
@@ -68,7 +68,7 @@ export function ProjectDetail({ project }: { project: ProjectData }) {
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ y: -2 }}
-                className="inline-flex items-center gap-2 rounded-full bg-[#81A6C6] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#7096B5]"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white transition hover:brightness-110"
               >
                 <ExternalLink className="h-4 w-4" />
                 Live Demo
@@ -160,7 +160,7 @@ export function ProjectDetail({ project }: { project: ProjectData }) {
         >
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] transition hover:text-[#81A6C6]"
+            className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] transition hover:text-[var(--accent)]"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to All Projects

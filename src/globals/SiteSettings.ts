@@ -171,6 +171,38 @@ export const SiteSettings: GlobalConfig = {
             },
           ],
         },
+        {
+          label: 'Theme',
+          fields: [
+            {
+              name: 'themePreset',
+              type: 'select',
+              defaultValue: 'earthy',
+              options: [
+                { label: 'Earthy (Default)', value: 'earthy' },
+                { label: 'Ocean', value: 'ocean' },
+                { label: 'Forest', value: 'forest' },
+                { label: 'Sunset', value: 'sunset' },
+                { label: 'Custom', value: 'custom' },
+              ],
+            },
+            {
+              name: 'customColors',
+              type: 'group',
+              fields: [
+                { name: 'accent', type: 'text', defaultValue: '#81A6C6', admin: { description: 'Accent color (hex)' } },
+                { name: 'bgPrimaryLight', type: 'text', defaultValue: '#F3E3D0', admin: { description: 'Light mode background' } },
+                { name: 'bgSecondaryLight', type: 'text', defaultValue: '#F8F1E8', admin: { description: 'Light mode secondary background' } },
+                { name: 'textPrimaryLight', type: 'text', defaultValue: '#3E342C', admin: { description: 'Light mode primary text' } },
+                { name: 'textSecondaryLight', type: 'text', defaultValue: '#6E6257', admin: { description: 'Light mode secondary text' } },
+                { name: 'bgPrimaryDark', type: 'text', defaultValue: '#0f0f0f', admin: { description: 'Dark mode background' } },
+                { name: 'bgSecondaryDark', type: 'text', defaultValue: '#1a1a1a', admin: { description: 'Dark mode secondary background' } },
+                { name: 'textPrimaryDark', type: 'text', defaultValue: '#e8e4e0', admin: { description: 'Dark mode primary text' } },
+                { name: 'textSecondaryDark', type: 'text', defaultValue: '#b0a89e', admin: { description: 'Dark mode secondary text' } },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],

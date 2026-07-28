@@ -16,7 +16,7 @@ export function BackgroundBlobs() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-[#81A6C6]/18 blur-3xl dark:bg-[#81A6C6]/8"
+        className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-[var(--accent)]/18 blur-3xl dark:bg-[var(--accent)]/8"
       />
       <motion.div
         animate={{
@@ -29,7 +29,7 @@ export function BackgroundBlobs() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute right-0 top-80 h-80 w-80 rounded-full bg-[#AACDDC]/22 blur-3xl dark:bg-[#AACDDC]/8"
+        className="absolute right-0 top-80 h-80 w-80 rounded-full bg-[var(--accent-light)]/22 blur-3xl dark:bg-[var(--accent-light)]/8"
       />
       <motion.div
         animate={{

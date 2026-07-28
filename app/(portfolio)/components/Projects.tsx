@@ -27,7 +27,7 @@ export function Projects({
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
+          <p className="text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
             Selected Projects
           </p>
         </motion.div>
@@ -59,7 +59,7 @@ export function Projects({
               Belum ada project. Tambahkan project pertama melalui{" "}
               <a
                 href="/admin"
-                className="text-[#81A6C6] underline hover:text-[#7096B5]"
+                className="text-[var(--accent)] underline hover:text-[#7096B5]"
               >
                 Admin Panel
               </a>
@@ -82,7 +82,7 @@ export function Projects({
             <motion.span
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-8 py-3.5 text-sm font-medium tracking-[0.08em] text-[var(--text-primary)] transition hover:border-[#81A6C6] hover:text-[#81A6C6]"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-8 py-3.5 text-sm font-medium tracking-[0.08em] text-[var(--text-primary)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               View All Projects
               <ArrowUpRight className="h-4 w-4" />

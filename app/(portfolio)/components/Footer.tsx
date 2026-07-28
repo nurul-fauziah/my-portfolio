@@ -57,7 +57,7 @@ export function Footer({
                 href={social!.href}
                 target="_blank"
                 rel="noreferrer"
-                whileHover={{ y: -3, color: "#81A6C6" }}
+                whileHover={{ y: -3, color: "var(--accent)" }}
                 className="text-[var(--text-muted)] transition"
                 aria-label={social!.label}
               >
@@ -70,7 +70,7 @@ export function Footer({
         <motion.a
           href="#"
           whileHover={{ y: -3 }}
-          className="flex items-center gap-2 text-sm text-[var(--text-muted)] transition hover:text-[#81A6C6]"
+          className="flex items-center gap-2 text-sm text-[var(--text-muted)] transition hover:text-[var(--accent)]"
         >
           <ArrowUp className="h-4 w-4" />
           Back to top

@@ -24,25 +24,25 @@ export function Contact({
 }: ContactProps) {
   const contacts = [
     {
-      icon: <Mail className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      icon: <Mail className="mb-3 h-5 w-5 text-[var(--accent)]" />,
       label: "Email",
       value: email,
       href: `mailto:${email}`,
     },
     {
-      icon: <FaLinkedin className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      icon: <FaLinkedin className="mb-3 h-5 w-5 text-[var(--accent)]" />,
       label: "LinkedIn",
       value: linkedin,
       href: linkedin.startsWith("http") ? linkedin : `https://${linkedin}`,
     },
     {
-      icon: <FaGithub className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      icon: <FaGithub className="mb-3 h-5 w-5 text-[var(--accent)]" />,
       label: "GitHub",
       value: github,
       href: github.startsWith("http") ? github : `https://${github}`,
     },
     {
-      icon: <MapPin className="mb-3 h-5 w-5 text-[#81A6C6]" />,
+      icon: <MapPin className="mb-3 h-5 w-5 text-[var(--accent)]" />,
       label: "Base",
       value: location,
       href: "",
@@ -58,7 +58,7 @@ export function Contact({
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
+          <p className="text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
             Contact
           </p>
         </motion.div>
@@ -90,7 +90,7 @@ export function Contact({
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.08 }}
                   whileHover={{ y: -6, scale: 1.01 }}
-                  className="rounded-[24px] border border-[var(--border)] bg-[var(--bg-card)] p-5 transition hover:bg-[var(--bg-secondary)]"
+                  className="rounded-[24px] border border-[var(--border)] bg-[var(--bg-card)] p-5 transition-all duration-300 hover:border-[var(--accent)]/40 hover:bg-[var(--bg-secondary)] hover:shadow-[0_8px_30px_rgba(129,166,198,0.12)]"
                 >
                   {contact.icon}
                   <p className="text-sm text-[var(--text-muted)]">{contact.label}</p>

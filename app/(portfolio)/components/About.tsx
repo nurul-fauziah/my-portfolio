@@ -25,7 +25,7 @@ export function About({
       className="grid gap-8 border-t border-[var(--border)] py-20 lg:grid-cols-[0.8fr_1.2fr]"
     >
       <div>
-        <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
+        <p className="text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
           About
         </p>
       </div>

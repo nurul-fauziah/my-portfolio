@@ -44,7 +44,7 @@ export function Header({
             <motion.a
               key={link.label}
               href={link.href}
-              whileHover={{ y: -2, color: "#81A6C6" }}
+              whileHover={{ y: -2, color: "var(--accent)" }}
               transition={{ duration: 0.2 }}
               className="transition"
             >
@@ -86,7 +86,7 @@ export function Header({
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.06 }}
-                  className="rounded-lg px-4 py-3 text-sm text-[var(--text-secondary)] transition hover:bg-[var(--bg-secondary)] hover:text-[#81A6C6]"
+                  className="rounded-lg px-4 py-3 text-sm text-[var(--text-secondary)] transition hover:bg-[var(--bg-secondary)] hover:text-[var(--accent)]"
                 >
                   {link.label}
                 </motion.a>

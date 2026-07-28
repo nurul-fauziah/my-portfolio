@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import React from "react";
+import { motion } from "framer-motion";
 import { BackgroundBlobs } from "./components/BackgroundBlobs";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
@@ -15,6 +16,7 @@ import { Footer } from "./components/Footer";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { CursorGlow } from "./components/CursorGlow";
+import { ThemeProvider } from "./components/ThemeProvider";
 import type { ProjectData, ExperienceData, SiteSettingsData } from "./lib/types";
 
 export type { ProjectData };
@@ -33,12 +35,17 @@ export default function PortfolioClient({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <>
+    <ThemeProvider light={siteSettings.theme.light} dark={siteSettings.theme.dark}>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       <ScrollProgress />
       <CursorGlow />
 
-      <main className="relative min-h-screen overflow-x-hidden bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[#81A6C6] selection:text-white">
+      <motion.main
+        initial={{ opacity: 0, y: 30 }}
+        animate={loaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        className="relative min-h-screen overflow-x-hidden bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent)] selection:text-white"
+      >
         <BackgroundBlobs />
 
         <div className="relative mx-auto max-w-7xl px-6 py-8 md:px-10 lg:px-12">
@@ -80,7 +87,7 @@ export default function PortfolioClient({
             github={siteSettings.github}
           />
         </div>
-      </main>
-    </>
+      </motion.main>
+    </ThemeProvider>
   );
 }

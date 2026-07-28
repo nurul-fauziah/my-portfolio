@@ -35,7 +35,7 @@ export function Experience({
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
+          <p className="text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
             Experience
           </p>
         </motion.div>

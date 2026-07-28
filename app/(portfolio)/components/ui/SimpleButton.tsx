@@ -19,11 +19,11 @@ export function SimpleButton({
   href,
 }: SimpleButtonProps) {
   const baseClass =
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium tracking-[0.08em] transition duration-300";
+    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium tracking-[0.08em] transition-all duration-300";
   const variantClass =
     variant === "outline"
-      ? "border border-[var(--border)] bg-transparent text-[var(--text-primary)] hover:bg-[#AACDDC]/20 dark:hover:bg-[#81A6C6]/10"
-      : "bg-[#81A6C6] text-white hover:bg-[#7096B5]";
+      ? "border border-[var(--border)] bg-transparent text-[var(--text-primary)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/5 hover:text-[var(--accent-light)] dark:hover:border-[var(--accent)]/30 dark:hover:bg-[var(--accent)]/10"
+      : "bg-gradient-to-br from-[var(--accent)] to-[var(--accent-light)] text-white shadow-[0_4px_20px_rgba(129,166,198,0.35)] hover:shadow-[0_8px_30px_rgba(129,166,198,0.5)] hover:brightness-110";
 
   const combinedClass = `${baseClass} ${variantClass} ${className}`;
 

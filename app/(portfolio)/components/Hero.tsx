@@ -47,7 +47,7 @@ export function Hero({
         <div className="space-y-4">
           <motion.p
             variants={item}
-            className="text-xs uppercase tracking-[0.4em] text-[#81A6C6]"
+            className="text-xs uppercase tracking-[0.4em] text-[var(--accent)]"
           >
             {subtitle}
           </motion.p>
@@ -95,17 +95,17 @@ export function Hero({
               </div>
 
               <div>
-                <p className="text-sm uppercase tracking-[0.28em] text-[#81A6C6]">
+                <p className="text-sm uppercase tracking-[0.28em] text-[var(--accent)]">
                   Location
                 </p>
                 <div className="mt-2 flex items-center gap-2 text-[var(--text-primary)]">
-                  <MapPin className="h-4 w-4 text-[#81A6C6]" />
+                  <MapPin className="h-4 w-4 text-[var(--accent)]" />
                   <span>{location}</span>
                 </div>
               </div>
 
               <div>
-                <p className="text-sm uppercase tracking-[0.28em] text-[#81A6C6]">
+                <p className="text-sm uppercase tracking-[0.28em] text-[var(--accent)]">
                   Focus
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">

@@ -54,7 +54,7 @@ export function ProjectCard({
                     <motion.div
                       variants={{ hover: { scale: 1.05, x: 10, y: -4 } }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="absolute inset-0 bg-gradient-to-br from-[#81A6C6] via-[#AACDDC] to-[#F3E3D0] dark:from-[#2a4a6b] dark:via-[#3a6a8d] dark:to-[#1a2a3b]"
+                      className="absolute inset-0 bg-gradient-to-br from-[var(--accent)] via-[var(--accent-light)] to-[var(--bg-primary)] dark:from-[#2a4a6b] dark:via-[#3a6a8d] dark:to-[#1a2a3b]"
                     />
                     <motion.div
                       animate={{ rotate: [0, 8, -4, 0], scale: [1, 1.04, 0.98, 1] }}
@@ -74,7 +74,7 @@ export function ProjectCard({
                 <div>
                   <motion.p
                     variants={{ hover: { x: 4 } }}
-                    className="text-sm uppercase tracking-[0.28em] text-[#81A6C6]"
+                    className="text-sm uppercase tracking-[0.28em] text-[var(--accent)]"
                   >
                     {project.tag}
                   </motion.p>

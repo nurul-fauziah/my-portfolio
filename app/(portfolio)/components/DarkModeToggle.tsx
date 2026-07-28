@@ -32,7 +32,7 @@ export function DarkModeToggle() {
       onClick={toggle}
       whileHover={{ y: -2, scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#D2C4B4] bg-[#F8F1E8] text-[#6E6257] transition hover:border-[#81A6C6] hover:text-[#81A6C6] dark:border-[#3a3a3a] dark:bg-[#1a1a1a] dark:text-[#ccc] dark:hover:border-[#81A6C6]"
+      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#D2C4B4] bg-[#F8F1E8] text-[#6E6257] transition hover:border-[var(--accent)] hover:text-[var(--accent)] dark:border-[#3a3a3a] dark:bg-[#1a1a1a] dark:text-[#ccc] dark:hover:border-[var(--accent)]"
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
     >
       <motion.div

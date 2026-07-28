@@ -3,6 +3,18 @@ export type NavLink = {
   href: string;
 };
 
+export type ThemeColors = {
+  accent: string;
+  accentLight: string;
+  bgPrimary: string;
+  bgSecondary: string;
+  bgCard: string;
+  textPrimary: string;
+  textSecondary: string;
+  textMuted: string;
+  border: string;
+};
+
 export type SiteSettingsData = {
   siteName: string;
   navLinks: NavLink[];
@@ -25,6 +37,10 @@ export type SiteSettingsData = {
   contactLocation: string;
   copyrightName: string;
   worksHeading: string;
+  theme: {
+    light: ThemeColors;
+    dark: ThemeColors;
+  };
 };
 
 export type ExperienceData = {

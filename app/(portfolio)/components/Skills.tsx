@@ -75,7 +75,7 @@ export function Skills({ skills = defaultSkills }: SkillsProps) {
     >
       <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
+          <p className="text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
             Tech Stack
           </p>
         </div>
@@ -107,9 +107,9 @@ export function Skills({ skills = defaultSkills }: SkillsProps) {
                   viewport={{ once: true }}
                   transition={{ delay: gi * 0.15 + i * 0.05 }}
                   whileHover={{ y: -6, scale: 1.05 }}
-                  className="group flex flex-col items-center gap-3 rounded-[20px] border border-[#D2C4B4] bg-[#F8F1E8] p-5 transition-all duration-300 hover:border-[#81A6C6] hover:shadow-[0_12px_30px_rgba(129,166,198,0.15)]"
+                  className="group flex flex-col items-center gap-3 rounded-[20px] border border-[var(--border)] bg-[var(--bg-card)] p-5 transition-all duration-300 hover:border-[var(--accent)] hover:shadow-[0_12px_30px_rgba(129,166,198,0.15)]"
                 >
-                  <div className="text-[#8A7C70] transition-colors duration-300 group-hover:text-[#81A6C6]">
+                  <div className="text-[#8A7C70] transition-colors duration-300 group-hover:text-[var(--accent)]">
                     {iconMap[skill.name] || (
                       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D2C4B4] text-xs font-bold text-[#3E342C]">
                         {skill.name.charAt(0)}

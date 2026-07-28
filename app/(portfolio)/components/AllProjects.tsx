@@ -20,7 +20,7 @@ export function AllProjects({ projects }: { projects: ProjectData[] }) {
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="flex items-center gap-2 text-sm text-[var(--text-secondary)] transition hover:text-[#81A6C6]"
+              className="flex items-center gap-2 text-sm text-[var(--text-secondary)] transition hover:text-[var(--accent)]"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Home
@@ -38,7 +38,7 @@ export function AllProjects({ projects }: { projects: ProjectData[] }) {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <p className="text-sm uppercase tracking-[0.35em] text-[#81A6C6]">
+          <p className="text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
             All Projects
           </p>
           <h1 className="mt-4 max-w-4xl font-serif text-4xl tracking-tight text-[var(--text-primary)] md:text-6xl">
