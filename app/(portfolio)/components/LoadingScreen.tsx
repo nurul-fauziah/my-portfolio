@@ -40,7 +40,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         <motion.div
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F3E3D0]"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--bg-primary)]"
         >
           {/* Background blobs */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -76,7 +76,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="mt-4 font-serif text-4xl text-[#3E342C] md:text-6xl"
+              className="mt-4 font-serif text-4xl text-[var(--text-primary)] md:text-6xl"
             >
               Nurul Fauziah
             </motion.h1>
@@ -93,7 +93,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.3 + i * 0.25 }}
-                  className="text-sm uppercase tracking-[0.3em] text-[#6E6257]"
+                  className="text-sm uppercase tracking-[0.3em] text-[var(--text-secondary)]"
                 >
                   {word}
                 </motion.span>
@@ -108,7 +108,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             transition={{ delay: 0.9 }}
             className="relative z-10 mt-12 w-48"
           >
-            <div className="h-[2px] w-full overflow-hidden rounded-full bg-[#D2C4B4]">
+            <div className="h-[2px] w-full overflow-hidden rounded-full bg-[var(--border)]">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]"
                 style={{ width: `${Math.min(progress, 100)}%` }}
@@ -119,7 +119,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="mt-3 text-center text-xs text-[#8A7C70]"
+              className="mt-3 text-center text-xs text-[var(--text-muted)]"
             >
               {Math.min(Math.round(progress), 100)}%
             </motion.p>

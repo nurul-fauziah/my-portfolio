@@ -46,7 +46,7 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="border-t border-[#D2C4B4] py-20">
+    <section className="border-t border-[var(--border)] py-20">
       <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
         {stats.map((stat, index) => (
           <motion.div
@@ -57,10 +57,10 @@ export function Stats() {
             transition={{ duration: 0.6, delay: index * 0.1 }}
             className="text-center"
           >
-            <p className="font-serif text-4xl text-[#3E342C] md:text-5xl">
+            <p className="font-serif text-4xl text-[var(--text-primary)] md:text-5xl">
               <AnimatedCounter target={stat.value} suffix={stat.suffix} />
             </p>
-            <p className="mt-2 text-sm uppercase tracking-[0.2em] text-[#8A7C70]">
+            <p className="mt-2 text-sm uppercase tracking-[0.2em] text-[var(--text-muted)]">
               {stat.label}
             </p>
           </motion.div>

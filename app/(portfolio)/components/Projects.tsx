@@ -59,7 +59,7 @@ export function Projects({
               Belum ada project. Tambahkan project pertama melalui{" "}
               <a
                 href="/admin"
-                className="text-[var(--accent)] underline hover:text-[#7096B5]"
+                className="text-[var(--accent)] underline hover:text-[var(--accent-light)]"
               >
                 Admin Panel
               </a>

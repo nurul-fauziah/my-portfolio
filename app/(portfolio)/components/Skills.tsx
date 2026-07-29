@@ -71,7 +71,7 @@ export function Skills({ skills = defaultSkills }: SkillsProps) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.15 }}
-      className="border-t border-[#D2C4B4] py-20"
+      className="border-t border-[var(--border)] py-20"
     >
       <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
@@ -80,7 +80,7 @@ export function Skills({ skills = defaultSkills }: SkillsProps) {
           </p>
         </div>
         <div>
-          <h2 className="max-w-3xl font-serif text-3xl tracking-tight text-[#3E342C] md:text-5xl">
+          <h2 className="max-w-3xl font-serif text-3xl tracking-tight text-[var(--text-primary)] md:text-5xl">
             Tools & technologies I work with.
           </h2>
         </div>
@@ -95,7 +95,7 @@ export function Skills({ skills = defaultSkills }: SkillsProps) {
             viewport={{ once: true }}
             transition={{ delay: gi * 0.15 }}
           >
-            <h3 className="mb-6 text-sm font-medium uppercase tracking-[0.25em] text-[#8A7C70]">
+            <h3 className="mb-6 text-sm font-medium uppercase tracking-[0.25em] text-[var(--text-muted)]">
               {group.category}
             </h3>
             <div className="grid grid-cols-3 gap-3">
@@ -109,14 +109,14 @@ export function Skills({ skills = defaultSkills }: SkillsProps) {
                   whileHover={{ y: -6, scale: 1.05 }}
                   className="group flex flex-col items-center gap-3 rounded-[20px] border border-[var(--border)] bg-[var(--bg-card)] p-5 transition-all duration-300 hover:border-[var(--accent)] hover:shadow-[0_12px_30px_rgba(129,166,198,0.15)]"
                 >
-                  <div className="text-[#8A7C70] transition-colors duration-300 group-hover:text-[var(--accent)]">
+                  <div className="text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--accent)]">
                     {iconMap[skill.name] || (
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D2C4B4] text-xs font-bold text-[#3E342C]">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--border)] text-xs font-bold text-[var(--text-primary)]">
                         {skill.name.charAt(0)}
                       </div>
                     )}
                   </div>
-                  <span className="text-center text-xs text-[#6E6257]">
+                  <span className="text-center text-xs text-[var(--text-secondary)]">
                     {skill.name}
                   </span>
                 </motion.div>

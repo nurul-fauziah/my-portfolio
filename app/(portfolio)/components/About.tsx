@@ -46,7 +46,7 @@ export function About({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="max-w-3xl space-y-4 text-[var(--text-secondary)]"
+          className="max-w-3xl space-y-4 text-base leading-relaxed text-[var(--text-secondary)]"
         >
           {paragraphs.map((text, i) => (
             <p key={i}>{text}</p>

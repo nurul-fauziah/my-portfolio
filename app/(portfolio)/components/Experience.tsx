@@ -59,8 +59,8 @@ export function Experience({
               <h3 className="mt-2 font-serif text-2xl text-[var(--text-primary)]">
                 {exp.role}
               </h3>
-              <p className="mt-1 text-[var(--text-secondary)]">{exp.company}</p>
-              <p className="mt-4 max-w-2xl text-[var(--text-secondary)]">
+              <p className="mt-1 text-sm text-[var(--text-secondary)]">{exp.company}</p>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--text-secondary)]">
                 {exp.description}
               </p>
             </motion.div>

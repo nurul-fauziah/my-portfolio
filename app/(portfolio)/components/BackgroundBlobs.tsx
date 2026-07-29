@@ -41,7 +41,7 @@ export function BackgroundBlobs() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-[#D2C4B4]/20 blur-3xl dark:bg-[#D2C4B4]/8"
+        className="absolute bottom-10 left-1/3 h-64 w-64 rounded-full bg-[var(--border)]/20 blur-3xl dark:bg-[var(--border)]/8"
       />
     </div>
   );

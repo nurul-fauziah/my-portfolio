@@ -74,7 +74,7 @@ export function Contact({
             <h2 className="font-serif text-3xl tracking-tight text-[var(--text-primary)] md:text-5xl">
               {heading}
             </h2>
-            <p className="mt-4 max-w-2xl text-[var(--text-secondary)]">{description}</p>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--text-secondary)]">{description}</p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">

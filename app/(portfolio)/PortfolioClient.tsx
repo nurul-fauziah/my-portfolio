@@ -61,15 +61,16 @@ export default function PortfolioClient({
         initial={{ opacity: 0, y: 30 }}
         animate={loaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        className="relative z-10 min-h-screen overflow-x-hidden bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent)] selection:text-white"
+        className="relative z-10 min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent)] selection:text-white"
       >
         <BackgroundBlobs />
 
+        <Header
+          siteName={siteSettings.siteName}
+          navLinks={siteSettings.navLinks}
+        />
+
         <div className="relative mx-auto max-w-7xl px-6 py-8 md:px-10 lg:px-12">
-          <Header
-            siteName={siteSettings.siteName}
-            navLinks={siteSettings.navLinks}
-          />
           <Hero
             subtitle={siteSettings.heroSubtitle}
             title={siteSettings.heroTitle}

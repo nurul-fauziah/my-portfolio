@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import type { NavLink } from "../lib/types";
@@ -20,15 +20,26 @@ export function Header({
   ],
 }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <motion.header
       initial={{ opacity: 0, y: -18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-      className="sticky top-0 z-50 mb-14 border-b border-[var(--border)]/70 bg-[var(--bg-primary)]/70 backdrop-blur-xl"
+      className={`sticky top-0 z-50 mb-14 border-b backdrop-blur-md transition-all duration-300 ${
+        scrolled
+          ? "border-[var(--border)]/40 bg-[var(--bg-primary)]/80 shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
+          : "border-[var(--border)]/70 bg-[var(--bg-primary)]"
+      }`}
     >
-      <div className="flex items-center justify-between py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 lg:px-12">
         <div>
           <motion.p
             whileHover={{ letterSpacing: "0.42em" }}
