@@ -9,6 +9,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+package-lock.json
 
 # testing
 /coverage
@@ -44,4 +45,3 @@ next-env.d.ts
 *.db
 *.db-journal
 media/
-payload-types.ts

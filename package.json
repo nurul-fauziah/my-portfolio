@@ -10,7 +10,8 @@
     "lint": "eslint",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap"
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "prebuild": "pnpm generate:types && pnpm generate:importmap"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.86.0",
@@ -19,7 +20,7 @@
     "@payloadcms/storage-vercel-blob": "^3.86.0",
     "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
-    "framer-motion": "^12.38.0",
+    "framer-motion": "^12.43.0",
     "lucide-react": "^1.8.0",
     "next": "^16.2.11",
     "payload": "^3.86.0",
