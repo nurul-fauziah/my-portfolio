@@ -14,6 +14,7 @@
     "prebuild": "pnpm generate:types && pnpm generate:importmap"
   },
   "dependencies": {
+    "@img/sharp-linux-x64": "^0.35.3",
     "@payloadcms/db-postgres": "^3.86.0",
     "@payloadcms/next": "^3.86.0",
     "@payloadcms/richtext-lexical": "^3.86.0",

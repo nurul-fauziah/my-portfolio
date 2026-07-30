@@ -2,7 +2,7 @@
   "buildCommand": "pnpm build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "pnpm install",
+  "installCommand": "pnpm install --include-optional && pnpm rebuild sharp",
   "env": {
     "NODE_OPTIONS": "--no-deprecation"
   }
