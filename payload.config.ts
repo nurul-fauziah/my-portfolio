@@ -15,6 +15,9 @@ import { SiteSettings } from './src/globals/SiteSettings'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+console.log('[payload.config] DATABASE_URI exists:', !!process.env.DATABASE_URI)
+console.log('[payload.config] DATABASE_URI starts with:', process.env.DATABASE_URI?.substring(0, 30))
+
 export default buildConfig({
   admin: {
     user: Users.slug,
