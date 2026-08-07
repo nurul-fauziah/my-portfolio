@@ -7,6 +7,7 @@ export const Media: CollectionConfig = {
   },
   upload: {
     mimeTypes: ['image/*'],
+    disableLocalStorage: true,
   },
   fields: [
     {
