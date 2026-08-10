@@ -6,6 +6,21 @@ export const Projects: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'tag', 'featured', 'publishedAt'],
   },
+  hooks: {
+    beforeValidate: [
+      ({ data, operation }) => {
+        if (operation === 'create' || operation === 'update') {
+          if (data?.title && !data?.slug) {
+            data.slug = data.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)/g, '')
+          }
+        }
+        return data
+      },
+    ],
+  },
   fields: [
     {
       name: 'title',
@@ -19,6 +34,7 @@ export const Projects: CollectionConfig = {
       unique: true,
       admin: {
         position: 'sidebar',
+        description: 'Auto-generated dari title jika kosong',
       },
     },
     {

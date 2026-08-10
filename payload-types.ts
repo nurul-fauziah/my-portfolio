@@ -177,6 +177,9 @@ export interface Media {
 export interface Project {
   id: number;
   title: string;
+  /**
+   * Auto-generated dari title jika kosong
+   */
   slug: string;
   /**
    * Tampilkan di homepage (maks 3-5 project)
