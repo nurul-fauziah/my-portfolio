@@ -6,7 +6,51 @@ import { ProjectCard, type ProjectData } from "./ProjectCard";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
+const defaultProjects: ProjectData[] = [
+  {
+    title: 'E-Commerce Platform',
+    slug: 'e-commerce-platform',
+    tag: 'Featured Case Study',
+    description: 'A full-stack e-commerce solution with real-time inventory management, secure payment processing, and an intuitive admin dashboard.',
+    tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Stripe'],
+    featured: true,
+  },
+  {
+    title: 'Task Management App',
+    slug: 'task-management-app',
+    tag: 'Web Application',
+    description: 'Collaborative project management tool with drag-and-drop boards, real-time updates, and team analytics.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Socket.IO', 'Redis'],
+    featured: true,
+  },
+  {
+    title: 'AI Content Generator',
+    slug: 'ai-content-generator',
+    tag: 'AI / Machine Learning',
+    description: 'An AI-powered content creation platform that generates blog posts, social media content, and marketing copy.',
+    tech: ['Python', 'FastAPI', 'OpenAI', 'React', 'PostgreSQL'],
+    featured: true,
+  },
+  {
+    title: 'Portfolio Website',
+    slug: 'portfolio-website',
+    tag: 'Personal Website',
+    description: 'A modern, responsive portfolio website with dark mode support and smooth animations.',
+    tech: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'PayloadCMS'],
+    featured: true,
+  },
+  {
+    title: 'Real-time Chat App',
+    slug: 'realtime-chat-app',
+    tag: 'Web Application',
+    description: 'Instant messaging application with end-to-end encryption, file sharing, and group chat functionality.',
+    tech: ['React', 'Socket.IO', 'Express', 'MongoDB', 'Redis'],
+    featured: true,
+  },
+];
+
 export function AllProjects({ projects }: { projects: ProjectData[] }) {
+  const displayProjects = projects.length > 0 ? projects : defaultProjects;
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="relative mx-auto max-w-7xl px-6 py-8 md:px-10 lg:px-12">
@@ -48,21 +92,13 @@ export function AllProjects({ projects }: { projects: ProjectData[] }) {
 
         {/* Project Grid */}
         <div className="grid gap-6">
-          {projects.length > 0 ? (
-            projects.map((project, index) => (
-              <ProjectCard
-                key={project.slug}
-                project={project}
-                index={index}
-              />
-            ))
-          ) : (
-            <div className="rounded-[30px] border border-dashed border-[var(--border)] bg-[var(--bg-secondary)]/50 p-12 text-center">
-              <p className="text-lg text-[var(--text-muted)]">
-                Belum ada project.
-              </p>
-            </div>
-          )}
+          {displayProjects.map((project, index) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              index={index}
+            />
+          ))}
         </div>
       </div>
     </main>

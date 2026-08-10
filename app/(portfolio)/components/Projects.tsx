@@ -6,6 +6,33 @@ import { sectionReveal } from "../lib/animations";
 import { ProjectCard, type ProjectData } from "./ProjectCard";
 import Link from "next/link";
 
+const defaultProjects: ProjectData[] = [
+  {
+    title: 'E-Commerce Platform',
+    slug: 'e-commerce-platform',
+    tag: 'Featured Case Study',
+    description: 'A full-stack e-commerce solution with real-time inventory management, secure payment processing, and an intuitive admin dashboard.',
+    tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Stripe'],
+    featured: true,
+  },
+  {
+    title: 'Task Management App',
+    slug: 'task-management-app',
+    tag: 'Web Application',
+    description: 'Collaborative project management tool with drag-and-drop boards, real-time updates, and team analytics.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Socket.IO', 'Redis'],
+    featured: true,
+  },
+  {
+    title: 'AI Content Generator',
+    slug: 'ai-content-generator',
+    tag: 'AI / Machine Learning',
+    description: 'An AI-powered content creation platform that generates blog posts, social media content, and marketing copy.',
+    tech: ['Python', 'FastAPI', 'OpenAI', 'React', 'PostgreSQL'],
+    featured: true,
+  },
+];
+
 export function Projects({
   projects,
   heading,
@@ -15,7 +42,7 @@ export function Projects({
   heading?: string;
   limit?: number;
 }) {
-  const displayed = projects.slice(0, limit);
+  const displayed = projects.length > 0 ? projects.slice(0, limit) : defaultProjects;
   const hasMore = projects.length > limit;
 
   return (
@@ -45,28 +72,13 @@ export function Projects({
       </div>
 
       <div className="grid gap-6">
-        {displayed.length > 0 ? (
-          displayed.map((project, index) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              index={index}
-            />
-          ))
-        ) : (
-          <div className="rounded-[30px] border border-dashed border-[var(--border)] bg-[var(--bg-secondary)]/50 p-12 text-center">
-            <p className="text-lg text-[var(--text-muted)]">
-              Belum ada project. Tambahkan project pertama melalui{" "}
-              <a
-                href="/admin"
-                className="text-[var(--accent)] underline hover:text-[var(--accent-light)]"
-              >
-                Admin Panel
-              </a>
-              .
-            </p>
-          </div>
-        )}
+        {displayed.map((project, index) => (
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            index={index}
+          />
+        ))}
       </div>
 
       {/* View All button */}
