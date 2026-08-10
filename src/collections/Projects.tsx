@@ -94,7 +94,10 @@ export const Projects: CollectionConfig = {
       name: 'githubUrl',
       type: 'text',
       admin: {
-        description: 'Link ke GitHub repo (opsional)',
+        description: 'Link ke GitHub repo (opsional). Paste URL dan klik Import untuk auto-fill.',
+        components: {
+          Field: '/src/components/GithubImporter.tsx#GithubImporter',
+        },
       },
     },
     {

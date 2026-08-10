@@ -4,6 +4,7 @@ import PortfolioClient from './PortfolioClient'
 import type { ProjectData } from './PortfolioClient'
 import type { ThemeColors } from './lib/types'
 import type { Project, Experience, SiteSetting } from '../../payload-types'
+import { fetchGithubRepoFromUrl } from '@/src/lib/github'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,17 +28,33 @@ export default async function PortfolioPage() {
     }),
   ])
 
-  const projects: ProjectData[] = projectsResult.docs.map((doc: Project) => ({
-    title: doc.title,
+  // Fetch GitHub data for projects with empty fields
+  const projectsWithGithub = await Promise.all(
+    projectsResult.docs.map(async (doc: Project) => {
+      let githubData = null
+      if (doc.githubUrl) {
+        const hasEmptyFields = !doc.description || !(doc.tech?.length) || !doc.title
+        if (hasEmptyFields) {
+          githubData = await fetchGithubRepoFromUrl(doc.githubUrl)
+        }
+      }
+      return { doc, githubData }
+    })
+  )
+
+  const projects: ProjectData[] = projectsWithGithub.map(({ doc, githubData }) => ({
+    title: doc.title || githubData?.name || 'Untitled Project',
     slug: doc.slug,
     tag: doc.tag || 'Featured Case Study',
-    description: doc.description,
-    tech: (doc.tech || []).map((t) => t.name),
+    description: doc.description || githubData?.description || '',
+    tech: doc.tech?.length
+      ? doc.tech.map((t) => t.name)
+      : githubData?.topics || [],
     image:
       doc.image && typeof doc.image === 'object' && 'url' in doc.image
         ? (doc.image.url as string)
         : undefined,
-    projectUrl: doc.projectUrl || undefined,
+    projectUrl: doc.projectUrl || githubData?.homepage || undefined,
     githubUrl: doc.githubUrl || undefined,
     featured: doc.featured || false,
   }))

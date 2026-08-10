@@ -4,6 +4,7 @@ import { ProjectDetail } from '../../components/ProjectDetail'
 import type { ProjectData } from '../../lib/types'
 import type { Project } from '../../../../payload-types'
 import { notFound } from 'next/navigation'
+import { fetchGithubRepoFromUrl } from '@/src/lib/github'
 
 export const dynamic = 'force-dynamic'
 
@@ -36,17 +37,28 @@ export default async function ProjectDetailPage({
       caption: item.caption || undefined,
     })) || []
 
+  // GitHub fallback: fetch repo data if fields are empty
+  let githubData = null
+  if (doc.githubUrl) {
+    const hasEmptyFields = !doc.description || !(doc.tech?.length) || !doc.title
+    if (hasEmptyFields) {
+      githubData = await fetchGithubRepoFromUrl(doc.githubUrl)
+    }
+  }
+
   const project: ProjectData = {
-    title: doc.title,
+    title: doc.title || githubData?.name || 'Untitled Project',
     slug: doc.slug,
     tag: doc.tag || 'Featured Case Study',
-    description: doc.description,
-    tech: (doc.tech || []).map((t) => t.name),
+    description: doc.description || githubData?.description || '',
+    tech: doc.tech?.length
+      ? doc.tech.map((t) => t.name)
+      : githubData?.topics || [],
     image:
       doc.image && typeof doc.image === 'object' && 'url' in doc.image
         ? (doc.image.url as string)
         : undefined,
-    projectUrl: doc.projectUrl || undefined,
+    projectUrl: doc.projectUrl || githubData?.homepage || undefined,
     githubUrl: doc.githubUrl || undefined,
     featured: doc.featured || false,
     content: doc.content || undefined,

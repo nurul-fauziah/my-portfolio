@@ -224,7 +224,7 @@ export interface Project {
    */
   projectUrl?: string | null;
   /**
-   * Link ke GitHub repo (opsional)
+   * Link ke GitHub repo (opsional). Paste URL dan klik Import untuk auto-fill.
    */
   githubUrl?: string | null;
   /**
