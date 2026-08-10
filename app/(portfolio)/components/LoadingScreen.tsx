@@ -3,13 +3,24 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const NAME = "Nurul Fauziah";
+
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
   const [show, setShow] = useState(true);
+  const [typed, setTyped] = useState(0);
 
+  // Typewriter effect
+  useEffect(() => {
+    if (typed >= NAME.length) return;
+    const timeout = setTimeout(() => setTyped((t) => t + 1), 80);
+    return () => clearTimeout(timeout);
+  }, [typed]);
+
+  // Progress bar
   useEffect(() => {
     const startTime = Date.now();
-    const totalDuration = 2800; // ~3s — smooth splash
+    const totalDuration = 2800;
 
     const timer = setInterval(() => {
       setProgress((prev) => {
@@ -17,14 +28,11 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           clearInterval(timer);
           setTimeout(() => {
             setShow(false);
-            // Delay before showing maintenance popup
             setTimeout(onComplete, 600);
           }, 400);
           return 100;
         }
-
         const elapsed = Date.now() - startTime;
-        // Smooth ease-out cubic
         const targetProgress = 100 * (1 - Math.pow(1 - elapsed / totalDuration, 3));
         const jitter = (Math.random() - 0.5) * 3;
         return Math.min(prev + (targetProgress - prev) * 0.12 + jitter, 100);
@@ -38,8 +46,8 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     <AnimatePresence>
       {show && (
         <motion.div
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--bg-primary)]"
         >
           {/* Background blobs */}
@@ -56,73 +64,51 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             />
           </div>
 
-          {/* Logo / Name */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 text-center"
-          >
+          {/* Name - Typewriter */}
+          <div className="relative z-10 text-center">
             <motion.p
-              initial={{ opacity: 0, letterSpacing: "0.1em" }}
-              animate={{ opacity: 1, letterSpacing: "0.5em" }}
-              transition={{ duration: 1.5, delay: 0.3 }}
-              className="text-sm uppercase text-[var(--accent)]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              className="text-sm uppercase tracking-[0.4em] text-[var(--text-muted)]"
             >
               Welcome
             </motion.p>
 
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 font-serif text-4xl text-[var(--accent)] md:text-6xl"
-            >
-              Nurul Fauziah
-            </motion.h1>
+            <h1 className="mt-4 font-serif text-4xl text-[var(--text-primary)] md:text-6xl">
+              {NAME.slice(0, typed)}
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.5, repeat: Infinity }}
+                className="ml-0.5 inline-block h-[1em] w-[3px] translate-y-1 bg-[var(--accent)]"
+              />
+            </h1>
 
-            <motion.div
+            <motion.p
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="mt-2 flex items-center justify-center gap-1"
+              animate={{ opacity: typed >= NAME.length ? 1 : 0 }}
+              className="mt-3 text-sm uppercase tracking-[0.3em] text-[var(--text-secondary)]"
             >
-              {["Fullstack", "Developer"].map((word, i) => (
-                <motion.span
-                  key={word}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.3 + i * 0.25 }}
-                  className="text-sm uppercase tracking-[0.3em] text-[var(--text-secondary)]"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </motion.div>
-          </motion.div>
+              Fullstack Developer
+            </motion.p>
+          </div>
 
           {/* Progress bar */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
+            transition={{ delay: 0.5 }}
             className="relative z-10 mt-12 w-48"
           >
             <div className="h-[2px] w-full overflow-hidden rounded-full bg-[var(--border)]">
-              <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)]"
+              <div
+                className="h-full rounded-full bg-[var(--accent)]"
                 style={{ width: `${Math.min(progress, 100)}%` }}
-                transition={{ duration: 0.1 }}
               />
             </div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="mt-3 text-center text-xs text-[var(--text-muted)]"
-            >
+            <p className="mt-3 text-center text-xs text-[var(--text-muted)]">
               {Math.min(Math.round(progress), 100)}%
-            </motion.p>
+            </p>
           </motion.div>
         </motion.div>
       )}
