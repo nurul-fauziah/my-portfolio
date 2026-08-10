@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useCallback } from 'react'
-import { useField } from '@payloadcms/ui'
+import { useField, useForm } from '@payloadcms/ui'
 import { parseGithubUrl } from '@/src/lib/github'
 
 type GithubRepoData = {
@@ -16,7 +16,9 @@ export const GithubImporter: React.FC = () => {
   const { value, setValue } = useField<string>({ path: 'githubUrl' })
   const titleField = useField<string>({ path: 'title' })
   const descriptionField = useField<string>({ path: 'description' })
+  const tagField = useField<string>({ path: 'tag' })
   const techField = useField<Array<{ name: string }>>({ path: 'tech' })
+  const { dispatchFields } = useForm()
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -43,15 +45,52 @@ export const GithubImporter: React.FC = () => {
 
       const data: GithubRepoData = await res.json()
 
-      // Only fill empty fields
+      // Fill title if empty
       if (!titleField.value && data.name) {
         titleField.setValue(data.name)
       }
+
+      // Fill description if empty
       if (!descriptionField.value && data.description) {
         descriptionField.setValue(data.description)
       }
-      if ((!techField.value || techField.value.length === 0) && data.topics.length > 0) {
-        techField.setValue(data.topics.map((t) => ({ name: t })))
+
+      // Fill tag if empty - derive from language or topics
+      if (!tagField.value) {
+        const tag = data.language || (data.topics.length > 0 ? data.topics[0] : 'Project')
+        tagField.setValue(tag)
+      }
+
+      // Fill tech array if empty - use dispatch for array field
+      if (!techField.value || techField.value.length === 0) {
+        const techItems = data.topics.length > 0
+          ? data.topics
+          : data.language
+            ? [data.language]
+            : []
+
+        if (techItems.length > 0) {
+          // Remove existing rows first
+          const currentRows = techField.value || []
+          for (let i = currentRows.length - 1; i >= 0; i--) {
+            dispatchFields({ type: 'REMOVE_ROW', path: 'tech', rowIndex: i })
+          }
+          // Add new rows
+          techItems.forEach((tech) => {
+            dispatchFields({
+              type: 'ADD_ROW',
+              path: 'tech',
+              subFieldState: {
+                name: {
+                  value: tech,
+                  isValid: true,
+                  showError: false,
+                  errorMessage: '',
+                },
+              },
+            })
+          })
+        }
       }
 
       setSuccess(true)
@@ -61,7 +100,7 @@ export const GithubImporter: React.FC = () => {
     } finally {
       setLoading(false)
     }
-  }, [value, titleField, descriptionField, techField])
+  }, [value, titleField, descriptionField, tagField, techField, dispatchFields])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -109,11 +148,11 @@ export const GithubImporter: React.FC = () => {
       {error && <p style={{ color: 'red', fontSize: '12px', margin: 0 }}>{error}</p>}
       {success && (
         <p style={{ color: 'green', fontSize: '12px', margin: 0 }}>
-          ✓ Imported! Title, description, and tech stack filled automatically.
+          ✓ Imported! Title, description, tag, and tech stack filled automatically.
         </p>
       )}
       <p style={{ fontSize: '11px', color: '#999', margin: 0 }}>
-        Paste a GitHub repo URL and click Import to auto-fill title, description, and tech stack.
+        Paste a GitHub repo URL and click Import to auto-fill all fields from the repo.
         Fields that already have values will not be overwritten.
       </p>
     </div>

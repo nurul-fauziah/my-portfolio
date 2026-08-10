@@ -35,7 +35,7 @@ export function parseGithubUrl(url: string): { owner: string; repo: string } | n
  */
 export async function fetchGithubRepo(owner: string, repo: string): Promise<GithubRepoData | null> {
   const headers: Record<string, string> = {
-    Accept: 'application/vnd.github+json',
+    Accept: 'application/vnd.github.mercy-preview+json',
   }
 
   if (process.env.GITHUB_TOKEN) {
