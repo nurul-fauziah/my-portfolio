@@ -49,7 +49,7 @@ export default async function PortfolioPage() {
     description: doc.description || githubData?.description || '',
     tech: doc.tech?.length
       ? doc.tech.map((t) => t.name)
-      : githubData?.topics || [],
+      : githubData?.techStack || [],
     image:
       doc.image && typeof doc.image === 'object' && 'url' in doc.image
         ? (doc.image.url as string)

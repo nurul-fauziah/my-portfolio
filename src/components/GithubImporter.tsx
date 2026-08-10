@@ -10,6 +10,7 @@ type GithubRepoData = {
   topics: string[]
   homepage: string | null
   language: string | null
+  techStack: string[]
 }
 
 export const GithubImporter: React.FC = () => {
@@ -61,13 +62,15 @@ export const GithubImporter: React.FC = () => {
         tagField.setValue(tag)
       }
 
-      // Fill tech array if empty - use dispatch for array field
+      // Fill tech array if empty - use techStack from package.json + topics + languages
       if (!techField.value || techField.value.length === 0) {
-        const techItems = data.topics.length > 0
-          ? data.topics
-          : data.language
-            ? [data.language]
-            : []
+        const techItems = data.techStack.length > 0
+          ? data.techStack
+          : data.topics.length > 0
+            ? data.topics
+            : data.language
+              ? [data.language]
+              : []
 
         if (techItems.length > 0) {
           // Remove existing rows first
@@ -153,7 +156,7 @@ export const GithubImporter: React.FC = () => {
       )}
       <p style={{ fontSize: '11px', color: '#999', margin: 0 }}>
         Paste a GitHub repo URL and click Import to auto-fill all fields from the repo.
-        Fields that already have values will not be overwritten.
+        Tech stack includes: package.json deps, GitHub topics, and languages.
       </p>
     </div>
   )
