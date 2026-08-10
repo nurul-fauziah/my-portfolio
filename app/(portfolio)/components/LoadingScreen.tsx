@@ -73,12 +73,24 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             </motion.p>
 
             <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="mt-4 font-serif text-4xl text-[var(--text-primary)] md:text-6xl"
+              className="mt-4 font-serif text-4xl md:text-6xl"
             >
-              Nurul Fauziah
+              {"Nurul Fauziah".split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 20, rotateX: -90 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.7 + i * 0.04,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="inline-block bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent-light)] bg-clip-text text-transparent"
+                  style={{ WebkitTextStroke: char === " " ? "0" : undefined }}
+                >
+                  {char === " " ? " " : char}
+                </motion.span>
+              ))}
             </motion.h1>
 
             <motion.div
