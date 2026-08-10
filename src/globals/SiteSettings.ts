@@ -16,7 +16,7 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'siteName',
               type: 'text',
-              defaultValue: 'yourname',
+              defaultValue: 'nurul-fauziah',
             },
             {
               name: 'navLinks',
@@ -148,17 +148,17 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'email',
               type: 'text',
-              defaultValue: 'your@email.com',
+              defaultValue: 'nurulfauziahh204@gmail.com',
             },
             {
               name: 'linkedin',
               type: 'text',
-              defaultValue: 'linkedin.com/in/yourname',
+              defaultValue: 'linkedin.com/in/nurul-fauziah',
             },
             {
               name: 'github',
               type: 'text',
-              defaultValue: 'github.com/yourname',
+              defaultValue: 'github.com/nurul-fauziah',
             },
             {
               name: 'contactLocation',
@@ -173,7 +173,7 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'copyrightName',
               type: 'text',
-              defaultValue: 'Your Name',
+              defaultValue: 'Nurul Fauziah',
             },
           ],
         },
