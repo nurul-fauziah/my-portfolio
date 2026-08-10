@@ -17,10 +17,9 @@ export const GithubImporter: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
-  const [allFields, setAllFields] = useFormFields(([fields, setFields]) => ({
-    fields,
-    setFields,
-  }))
+
+  // FormFieldsContext is [FormState, Dispatch<FieldAction>]
+  const [fields, dispatchFields] = useFormFields(([f, dispatch]) => [f, dispatch] as const)
 
   const handleImport = async () => {
     if (!value) return
@@ -43,18 +42,25 @@ export const GithubImporter: React.FC = () => {
 
       const data: GithubRepoData = await res.json()
 
-      // Auto-fill fields if they're empty
-      const currentTitle = allFields.fields?.title?.value as string | undefined
-      const currentDescription = allFields.fields?.description?.value as string | undefined
-      const currentTech = allFields.fields?.tech?.value as Array<{ name: string }> | undefined
+      // Get current field values
+      const currentTitle = fields?.title?.value as string | undefined
+      const currentDescription = fields?.description?.value as string | undefined
+      const currentTech = fields?.tech?.value as Array<{ name: string }> | undefined
 
-      allFields.setFields({
-        ...(currentTitle ? {} : { title: { value: data.name, isValid: true } }),
-        ...(currentDescription ? {} : { description: { value: data.description || '', isValid: true } }),
-        ...(!currentTech?.length && data.topics.length
-          ? { tech: { value: data.topics.map((t) => ({ name: t })), isValid: true } }
-          : {}),
-      })
+      // Dispatch updates for empty fields only
+      if (!currentTitle && data.name) {
+        dispatchFields({ type: 'UPDATE', path: 'title', value: data.name })
+      }
+      if (!currentDescription && data.description) {
+        dispatchFields({ type: 'UPDATE', path: 'description', value: data.description })
+      }
+      if (!currentTech?.length && data.topics.length) {
+        dispatchFields({
+          type: 'UPDATE',
+          path: 'tech',
+          value: data.topics.map((t) => ({ name: t })),
+        })
+      }
 
       setSuccess(true)
       setTimeout(() => setSuccess(false), 3000)
