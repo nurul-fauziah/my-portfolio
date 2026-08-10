@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { useField, useFormFields } from '@payloadcms/ui'
+import React, { useState, useCallback } from 'react'
+import { useField } from '@payloadcms/ui'
 import { parseGithubUrl } from '@/src/lib/github'
 
 type GithubRepoData = {
@@ -14,14 +14,15 @@ type GithubRepoData = {
 
 export const GithubImporter: React.FC = () => {
   const { value, setValue } = useField<string>({ path: 'githubUrl' })
+  const titleField = useField<string>({ path: 'title' })
+  const descriptionField = useField<string>({ path: 'description' })
+  const techField = useField<Array<{ name: string }>>({ path: 'tech' })
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
 
-  // FormFieldsContext is [FormState, Dispatch<FieldAction>]
-  const [fields, dispatchFields] = useFormFields(([f, dispatch]) => [f, dispatch] as const)
-
-  const handleImport = async () => {
+  const handleImport = useCallback(async () => {
     if (!value) return
 
     const parsed = parseGithubUrl(value)
@@ -42,24 +43,15 @@ export const GithubImporter: React.FC = () => {
 
       const data: GithubRepoData = await res.json()
 
-      // Get current field values
-      const currentTitle = fields?.title?.value as string | undefined
-      const currentDescription = fields?.description?.value as string | undefined
-      const currentTech = fields?.tech?.value as Array<{ name: string }> | undefined
-
-      // Dispatch updates for empty fields only
-      if (!currentTitle && data.name) {
-        dispatchFields({ type: 'UPDATE', path: 'title', value: data.name })
+      // Only fill empty fields
+      if (!titleField.value && data.name) {
+        titleField.setValue(data.name)
       }
-      if (!currentDescription && data.description) {
-        dispatchFields({ type: 'UPDATE', path: 'description', value: data.description })
+      if (!descriptionField.value && data.description) {
+        descriptionField.setValue(data.description)
       }
-      if (!currentTech?.length && data.topics.length) {
-        dispatchFields({
-          type: 'UPDATE',
-          path: 'tech',
-          value: data.topics.map((t) => ({ name: t })),
-        })
+      if ((!techField.value || techField.value.length === 0) && data.topics.length > 0) {
+        techField.setValue(data.topics.map((t) => ({ name: t })))
       }
 
       setSuccess(true)
@@ -69,7 +61,7 @@ export const GithubImporter: React.FC = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [value, titleField, descriptionField, techField])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
