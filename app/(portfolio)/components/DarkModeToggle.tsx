@@ -1,31 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 
 export function DarkModeToggle() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState<boolean | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      setDark(true);
-      document.documentElement.classList.add("dark");
-    }
+    const isDark = stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    setDark(isDark);
+    document.documentElement.classList.toggle("dark", isDark);
   }, []);
 
-  const toggle = () => {
-    const next = !dark;
-    setDark(next);
-    if (next) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
+  const toggle = useCallback(() => {
+    setDark((prev) => {
+      const next = prev === null ? true : !prev;
+      document.documentElement.classList.toggle("dark", next);
+      localStorage.setItem("theme", next ? "dark" : "light");
+      return next;
+    });
+  }, []);
+
+  // Don't render until initialized to avoid flash
+  if (dark === null) {
+    return (
+      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]" />
+    );
+  }
 
   return (
     <motion.button
@@ -36,9 +39,10 @@ export function DarkModeToggle() {
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
     >
       <motion.div
-        initial={false}
-        animate={{ rotate: dark ? 180 : 0 }}
-        transition={{ duration: 0.3 }}
+        key={dark ? "moon" : "sun"}
+        initial={{ rotate: -90, opacity: 0 }}
+        animate={{ rotate: 0, opacity: 1 }}
+        transition={{ duration: 0.2 }}
       >
         {dark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
       </motion.div>
