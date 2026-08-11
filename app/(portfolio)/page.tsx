@@ -74,8 +74,8 @@ export default async function PortfolioPage() {
 
   const presets: Record<string, { light: ThemeColors; dark: ThemeColors }> = {
     earthy: {
-      light: { accent: '#81A6C6', accentLight: '#AACDDC', bgPrimary: '#F3E3D0', bgSecondary: '#F8F1E8', bgCard: '#F8F1E8', textPrimary: '#3E342C', textSecondary: '#6E6257', textMuted: '#8A7C70', border: '#D2C4B4' },
-      dark: { accent: '#81A6C6', accentLight: '#5a8aad', bgPrimary: '#0f0f0f', bgSecondary: '#1a1a1a', bgCard: '#1e1e1e', textPrimary: '#e8e4e0', textSecondary: '#b0a89e', textMuted: '#7a7268', border: '#2a2a2a' },
+      light: { accent: '#5b8def', accentLight: '#8bb5f5', bgPrimary: '#f0f4f8', bgSecondary: '#e2e8f0', bgCard: '#e8eef4', textPrimary: '#1e3a5f', textSecondary: '#4a6fa5', textMuted: '#7a9bcb', border: '#c4d4e8' },
+      dark: { accent: '#6ba3f7', accentLight: '#4a8ae8', bgPrimary: '#0d1b2a', bgSecondary: '#132738', bgCard: '#1a3048', textPrimary: '#e0e7f1', textSecondary: '#94a8c8', textMuted: '#5e7a9e', border: '#243b55' },
     },
     ocean: {
       light: { accent: '#3B82F6', accentLight: '#93C5FD', bgPrimary: '#EFF6FF', bgSecondary: '#F8FAFC', bgCard: '#FFFFFF', textPrimary: '#1E3A5F', textSecondary: '#4B6A8D', textMuted: '#7A9BBD', border: '#BFDBFE' },
