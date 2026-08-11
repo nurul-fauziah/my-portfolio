@@ -114,17 +114,17 @@ export const SiteSettings: GlobalConfig = {
               name: 'aboutQuote',
               type: 'textarea',
               defaultValue:
-                'Thoughtful design, measured details, and digital experiences that age gracefully.',
+                'Blending design intuition with clean code — crafting web experiences that feel as good as they look.',
             },
             {
               name: 'aboutParagraphs',
               type: 'array',
               defaultValue: [
                 {
-                  text: 'I approach every project with equal attention to function and feeling. The goal is not only to make something work, but to make it feel effortless, refined, and quietly memorable.',
+                  text: "I'm a fresh graduate in Information Systems who found the sweet spot where design meets development. I love building web applications that aren't just functional, but genuinely enjoyable to use — from pixel-perfect interfaces to the code that powers them.",
                 },
                 {
-                  text: 'My style leans toward clean layouts, restrained motion, balanced typography, and a visual language that feels timeless rather than trendy.',
+                  text: "With hands-on experience in React, Laravel, and Tailwind CSS, I bring both the technical depth and design sensibility needed to create responsive, polished digital products. I'm also drawn to data analysis — finding patterns that inform better design decisions. Always looking for opportunities where I can build, learn, and make an impact.",
                 },
               ],
               fields: [{ name: 'text', type: 'textarea', required: true }],
