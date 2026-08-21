@@ -15,8 +15,9 @@ import { SiteSettings } from './src/globals/SiteSettings'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-console.log('[payload.config] DATABASE_URI exists:', !!process.env.DATABASE_URI)
-console.log('[payload.config] DATABASE_URI starts with:', process.env.DATABASE_URI?.substring(0, 30))
+if (process.env.NODE_ENV === 'development') {
+  console.log('[payload.config] DATABASE_URI exists:', !!process.env.DATABASE_URI)
+}
 
 export default buildConfig({
   admin: {
@@ -28,7 +29,9 @@ export default buildConfig({
   collections: [Users, Media, Projects, Experiences],
   globals: [SiteSettings],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || 'CHANGE-ME-before-production',
+  secret: process.env.PAYLOAD_SECRET || (() => {
+    throw new Error('PAYLOAD_SECRET env var is required')
+  })(),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
