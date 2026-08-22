@@ -6,14 +6,14 @@ export const Media: CollectionConfig = {
     useAsTitle: 'alt',
   },
   upload: {
-    mimeTypes: ['image/*'],
+    mimeTypes: ['image/*', 'application/pdf'],
     disableLocalStorage: true,
   },
   fields: [
     {
       name: 'alt',
       type: 'text',
-      required: true,
+      required: false,
     },
   ],
 }
