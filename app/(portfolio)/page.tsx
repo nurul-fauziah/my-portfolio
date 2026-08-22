@@ -25,6 +25,7 @@ export default async function PortfolioPage() {
     }),
     payload.findGlobal({
       slug: 'site-settings',
+      depth: 1,
     }),
   ])
 
