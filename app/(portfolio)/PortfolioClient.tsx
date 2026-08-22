@@ -81,6 +81,7 @@ export default function PortfolioClient({
             availabilityBadge={siteSettings.availabilityBadge}
             location={siteSettings.location}
             focusAreas={siteSettings.focusAreas}
+            resumeOptions={siteSettings.resumeOptions}
           />
           <About
             quote={siteSettings.aboutQuote}

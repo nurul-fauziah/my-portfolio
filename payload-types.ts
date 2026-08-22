@@ -496,6 +496,22 @@ export interface SiteSetting {
    * Background image revealed by cursor movement (wavy reveal effect across all sections)
    */
   cursorRevealImage?: (number | null) | Media;
+  /**
+   * Add multiple resume versions (English, Indonesian, Japanese, etc.). Each entry becomes a download option in the modal.
+   */
+  resumes?:
+    | {
+        /**
+         * e.g. English, Indonesia, 日本語
+         */
+        language: string;
+        /**
+         * PDF resume file
+         */
+        file: number | Media;
+        id?: string | null;
+      }[]
+    | null;
   worksHeading?: string | null;
   aboutQuote?: string | null;
   aboutParagraphs?:
@@ -581,6 +597,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         id?: T;
       };
   cursorRevealImage?: T;
+  resumes?:
+    | T
+    | {
+        language?: T;
+        file?: T;
+        id?: T;
+      };
   worksHeading?: T;
   aboutQuote?: T;
   aboutParagraphs?:

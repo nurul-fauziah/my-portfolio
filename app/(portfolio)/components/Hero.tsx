@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, X } from "lucide-react";
 import { container, item } from "../lib/animations";
 import { Card, CardContent } from "./ui/Card";
 import { SimpleButton } from "./ui/SimpleButton";
+import type { ResumeOption } from "../lib/types";
 
 type HeroProps = {
   subtitle?: string;
@@ -16,6 +18,7 @@ type HeroProps = {
   availabilityBadge?: string;
   location?: string;
   focusAreas?: string[];
+  resumeOptions?: ResumeOption[];
 };
 
 export function Hero({
@@ -28,7 +31,9 @@ export function Hero({
   availabilityBadge = "Available Worldwide",
   location = "Indonesia",
   focusAreas = ["Web Development", "UI/UX Design", "Portfolio Sites", "Landing Pages"],
+  resumeOptions,
 }: HeroProps) {
+  const [showResumeModal, setShowResumeModal] = useState(false);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 80]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
@@ -71,10 +76,58 @@ export function Hero({
           <SimpleButton href="#projects">
             {primaryCta} <ArrowUpRight className="ml-2 h-4 w-4" />
           </SimpleButton>
-          <SimpleButton variant="outline" href="#contact">
+          <SimpleButton
+            variant="outline"
+            onClick={() => resumeOptions?.length ? setShowResumeModal(true) : null}
+          >
             {secondaryCta}
           </SimpleButton>
         </motion.div>
+
+        {/* Resume Language Modal */}
+        {showResumeModal && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+            onClick={() => setShowResumeModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-sm rounded-xl bg-[var(--bg-primary)] p-6 shadow-xl dark:bg-[var(--bg-primary)]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowResumeModal(false)}
+                className="absolute top-3 right-3 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              <h3 className="mb-4 text-lg font-medium text-[var(--text-primary)]">
+                Download Resume
+              </h3>
+              <p className="mb-4 text-sm text-[var(--text-secondary)]">
+                Choose your preferred language:
+              </p>
+
+              <div className="flex flex-col gap-2">
+                {resumeOptions?.map((opt) => (
+                  <motion.a
+                    key={opt.href}
+                    href={opt.href}
+                    download
+                    onClick={() => setShowResumeModal(false)}
+                    className="rounded-lg border border-[var(--border)] px-4 py-2 text-left text-sm text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-secondary)]"
+                  >
+                    {opt.label}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
       </motion.div>
 
       <motion.div

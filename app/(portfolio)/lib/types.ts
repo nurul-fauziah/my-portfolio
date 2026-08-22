@@ -3,6 +3,11 @@ export type NavLink = {
   href: string;
 };
 
+export type ResumeOption = {
+  label: string;
+  href: string;
+};
+
 export type ThemeColors = {
   accent: string;
   accentLight: string;
@@ -38,6 +43,7 @@ export type SiteSettingsData = {
   copyrightName: string;
   worksHeading: string;
   cursorRevealImage?: string;
+  resumeOptions?: ResumeOption[];
   theme: {
     light: ThemeColors;
     dark: ThemeColors;

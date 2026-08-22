@@ -94,6 +94,28 @@ export const SiteSettings: GlobalConfig = {
               relationTo: 'media',
               admin: { description: 'Background image revealed by cursor movement (wavy reveal effect across all sections)' },
             },
+            {
+              name: 'resumes',
+              type: 'array',
+              admin: {
+                description: 'Add multiple resume versions (English, Indonesian, Japanese, etc.). Each entry becomes a download option in the modal.',
+              },
+              fields: [
+                {
+                  name: 'language',
+                  type: 'text',
+                  required: true,
+                  admin: { description: 'e.g. English, Indonesia, 日本語' },
+                },
+                {
+                  name: 'file',
+                  type: 'upload',
+                  relationTo: 'media',
+                  required: true,
+                  admin: { description: 'PDF resume file' },
+                },
+              ],
+            },
           ],
         },
         {
