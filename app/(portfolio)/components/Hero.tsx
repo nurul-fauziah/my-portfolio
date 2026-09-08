@@ -106,7 +106,7 @@ export function Hero({
               </button>
 
               <h3 className="mb-4 text-lg font-medium text-[var(--text-primary)]">
-                Download Resume
+                View Resume
               </h3>
               <p className="mb-4 text-sm text-[var(--text-secondary)]">
                 Choose your preferred language:
@@ -115,13 +115,27 @@ export function Hero({
               <div className="flex flex-col gap-2">
                 {resumeOptions?.map((opt) => (
                   <a
-                    key={opt.href}
-                    href={opt.href}
-                    download
-                    onClick={() => setShowResumeModal(false)}
-                    className="rounded-lg border border-[var(--border)] px-4 py-2 text-left text-sm text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-secondary)]"
+                    key={opt.label}
+                    href={opt.href ?? undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      if (!opt.href) return
+                      setShowResumeModal(false)
+                    }}
+                    aria-disabled={!opt.href}
+                    className={
+                      opt.href
+                        ? "rounded-lg border border-[var(--border)] px-4 py-2 text-left text-sm text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-secondary)] hover:border-[var(--accent)]"
+                        : "flex cursor-not-allowed items-center justify-between rounded-lg border border-dashed border-[var(--border)] px-4 py-2 text-left text-sm text-[var(--text-muted)]"
+                    }
                   >
                     {opt.label}
+                    {!opt.href && (
+                      <span className="text-xs uppercase tracking-wide text-[var(--text-muted)]">
+                        Segera
+                      </span>
+                    )}
                   </a>
                 ))}
               </div>

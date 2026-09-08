@@ -159,18 +159,14 @@ export default async function PortfolioPage() {
       s.cursorRevealImage && typeof s.cursorRevealImage === 'object' && 'url' in s.cursorRevealImage
         ? (s.cursorRevealImage.url as string)
         : undefined,
-    resumeOptions: (s.resumes || [])
-      .map((r) => ({
-        label: r.language,
-        fileId:
-          r.file && typeof r.file === 'object' && 'id' in r.file
-            ? (r.file.id as number)
-            : 0,
-        href: r.file && typeof r.file === 'object' && 'id' in r.file
-            ? `/api/download-resume?id=${r.file.id}`
-            : '',
-      }))
-      .filter((r) => Boolean(r.href) && r.fileId > 0),
+    resumeOptions: [
+        {
+          label: 'English',
+          href: '/resume/English/CV_English.pdf',
+        },
+        { label: 'Indonesia', href: null },
+        { label: '日本語 (Nihonggo)', href: null },
+      ],
     theme,
   }
 

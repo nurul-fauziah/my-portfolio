@@ -5,9 +5,7 @@ export type NavLink = {
 
 export type ResumeOption = {
   label: string;
-  /** Media file id, resolved to a download URL by the client */
-  fileId: number;
-  href: string;
+  href: string | null;
 };
 
 export type ThemeColors = {
