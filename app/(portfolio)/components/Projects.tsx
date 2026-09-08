@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { sectionReveal } from "../lib/animations";
-import { ProjectCard, type ProjectData } from "./ProjectCard";
+import { ProjectCarousel } from "./ProjectCarousel";
+import type { ProjectData } from "./ProjectCard";
 import Link from "next/link";
 
 const defaultProjects: ProjectData[] = [
@@ -71,13 +72,7 @@ export function Projects({
         </motion.div>
       </div>
 
-      <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto">
-        {displayed.map((project, index) => (
-          <div key={project.slug} className="w-full flex-none snap-center">
-            <ProjectCard project={project} index={index} />
-          </div>
-        ))}
-      </div>
+      <ProjectCarousel projects={displayed} />
 
       {/* View All button */}
       {hasMore && (
