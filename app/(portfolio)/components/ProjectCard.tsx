@@ -70,28 +70,25 @@ export function ProjectCard({
                 )}
               </div>
 
-              <div className="flex flex-col justify-between p-8">
+              <div className="flex flex-col justify-between p-6">
                 <div>
                   <motion.p
                     variants={{ hover: { x: 4 } }}
-                    className="text-sm uppercase tracking-[0.28em] text-[var(--accent)]"
+                    className="text-xs uppercase tracking-[0.28em] text-[var(--accent)]"
                   >
                     {project.tag}
                   </motion.p>
-                  <h3 className="mt-3 font-serif text-3xl text-[var(--text-primary)]">
+                  <h3 className="mt-2 font-serif text-2xl text-[var(--text-primary)]">
                     {project.title}
                   </h3>
-                  <p className="mt-4 max-w-xl leading-7 text-[var(--text-secondary)]">
-                    {project.description}
-                  </p>
                 </div>
 
-                <div className="mt-8 flex flex-wrap items-center gap-2">
-                  {project.tech.map((tech) => (
+                <div className="mt-5 flex flex-wrap items-center gap-2">
+                  {project.tech.slice(0, 4).map((tech) => (
                     <motion.span
                       key={tech}
                       whileHover={{ y: -2 }}
-                      className="rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-1 text-sm text-[var(--text-secondary)]"
+                      className="rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-1 text-xs text-[var(--text-secondary)]"
                     >
                       {tech}
                     </motion.span>
