@@ -11,7 +11,7 @@ export function Card({
 }) {
   return (
     <div
-      className={`rounded-[30px] border border-[var(--border)] bg-[var(--bg-card)]/90 backdrop-blur-sm ${className}`}
+      className={`rounded-[36px] border border-[var(--border)] bg-[var(--bg-card)]/90 backdrop-blur-sm ${className}`}
     >
       {children}
     </div>
