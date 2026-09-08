@@ -6,6 +6,12 @@ export const Experiences: CollectionConfig = {
     useAsTitle: 'role',
     defaultColumns: ['role', 'company', 'period', 'order'],
   },
+  access: {
+    read: () => true,
+    create: ({ req }) => !!req.user,
+    update: ({ req }) => !!req.user,
+    delete: ({ req }) => !!req.user,
+  },
   fields: [
     {
       name: 'period',

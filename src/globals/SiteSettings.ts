@@ -5,6 +5,10 @@ export const SiteSettings: GlobalConfig = {
   admin: {
     group: 'Site Settings',
   },
+  access: {
+    read: () => true,
+    update: ({ req }) => !!req.user,
+  },
   fields: [
     // ── Header ──
     {

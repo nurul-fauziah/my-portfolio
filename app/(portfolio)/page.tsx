@@ -162,12 +162,15 @@ export default async function PortfolioPage() {
     resumeOptions: (s.resumes || [])
       .map((r) => ({
         label: r.language,
-        href:
-          r.file && typeof r.file === 'object' && 'url' in r.file
-            ? (r.file.url as string)
+        fileId:
+          r.file && typeof r.file === 'object' && 'id' in r.file
+            ? (r.file.id as number)
+            : 0,
+        href: r.file && typeof r.file === 'object' && 'id' in r.file
+            ? `/api/download-resume?id=${r.file.id}`
             : '',
       }))
-      .filter((r) => Boolean(r.href)),
+      .filter((r) => Boolean(r.href) && r.fileId > 0),
     theme,
   }
 

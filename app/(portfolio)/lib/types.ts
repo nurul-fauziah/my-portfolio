@@ -5,6 +5,8 @@ export type NavLink = {
 
 export type ResumeOption = {
   label: string;
+  /** Media file id, resolved to a download URL by the client */
+  fileId: number;
   href: string;
 };
 
@@ -67,6 +69,7 @@ export type ProjectData = {
   projectUrl?: string;
   githubUrl?: string;
   featured?: boolean;
-  content?: unknown;
+  /** Serialized HTML from the Lexical rich text field (server-side conversion) */
+  contentHtml?: string;
   gallery?: Array<{ image: string; caption?: string }>;
 };

@@ -192,7 +192,7 @@ async function fetchPackageJson(
   owner: string,
   repo: string,
   branch: string = 'main'
-): Promise<Record<string, string> | null> {
+): Promise<PackageJson | null> {
   const headers = getGithubHeaders()
   const res = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/contents/package.json?ref=${branch}`,
@@ -214,7 +214,12 @@ async function fetchPackageJson(
 /**
  * Extract tech stack from package.json dependencies
  */
-function extractTechFromPackageJson(pkg: Record<string, string> | null): string[] {
+type PackageJson = {
+  dependencies?: Record<string, string>
+  devDependencies?: Record<string, string>
+}
+
+function extractTechFromPackageJson(pkg: PackageJson | null): string[] {
   if (!pkg) return []
 
   const allDeps = {

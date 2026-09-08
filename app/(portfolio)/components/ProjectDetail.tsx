@@ -106,15 +106,14 @@ export function ProjectDetail({ project }: { project: ProjectData }) {
         )}
 
         {/* Content */}
-        {project.content && (
+        {project.contentHtml && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="prose prose-lg prose-neutral dark:prose-invert mb-16 max-w-none"
           >
-            {/* Rich text content renders here - Payload handles this */}
-            <div dangerouslySetInnerHTML={{ __html: String(project.content) }} />
+            <div dangerouslySetInnerHTML={{ __html: project.contentHtml }} />
           </motion.div>
         )}
 

@@ -41,8 +41,8 @@ export function ProjectCard({
           }}
         >
           <Card className="overflow-hidden shadow-[0_18px_40px_rgba(62,52,44,0.06)] transition-shadow duration-300 group-hover:shadow-[0_24px_60px_rgba(62,52,44,0.10)] dark:shadow-[0_18px_40px_rgba(0,0,0,0.2)] dark:group-hover:shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
-            <CardContent className="grid gap-6 p-0 md:grid-cols-[0.95fr_1.05fr]">
-              <div className="relative min-h-[260px] overflow-hidden">
+            <CardContent className="flex flex-col p-0">
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
                 {project.image ? (
                   <img
                     src={project.image}

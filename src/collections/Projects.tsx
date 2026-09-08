@@ -6,6 +6,12 @@ export const Projects: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'tag', 'featured', 'publishedAt'],
   },
+  access: {
+    read: () => true,
+    create: ({ req }) => !!req.user,
+    update: ({ req }) => !!req.user,
+    delete: ({ req }) => !!req.user,
+  },
   hooks: {
     beforeValidate: [
       ({ data, operation }) => {

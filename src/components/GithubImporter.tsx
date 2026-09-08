@@ -86,8 +86,7 @@ export const GithubImporter: React.FC = () => {
               subFieldState: {
                 name: {
                   value: tech,
-                  isValid: true,
-                  showError: false,
+                  valid: true,
                   errorMessage: '',
                 },
               },

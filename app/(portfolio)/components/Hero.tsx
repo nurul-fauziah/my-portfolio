@@ -118,8 +118,6 @@ export function Hero({
                     key={opt.href}
                     href={opt.href}
                     download
-                    target="_blank"
-                    rel="noopener noreferrer"
                     onClick={() => setShowResumeModal(false)}
                     className="rounded-lg border border-[var(--border)] px-4 py-2 text-left text-sm text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-secondary)]"
                   >

@@ -5,6 +5,7 @@ import type { ProjectData } from '../../lib/types'
 import type { Project } from '../../../../payload-types'
 import { notFound } from 'next/navigation'
 import { fetchGithubRepoFromUrl } from '@/src/lib/github'
+import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
 
 export const dynamic = 'force-dynamic'
 
@@ -61,9 +62,15 @@ export default async function ProjectDetailPage({
     projectUrl: doc.projectUrl || githubData?.homepage || undefined,
     githubUrl: doc.githubUrl || undefined,
     featured: doc.featured || false,
-    content: doc.content || undefined,
+    contentHtml: toRichTextHtml(doc.content),
     gallery,
   }
 
   return <ProjectDetail project={project} />
+}
+
+/** Convert a Payload Lexical rich-text field to safe HTML for rendering. */
+function toRichTextHtml(content: unknown): string | undefined {
+  if (!content || typeof content !== 'object' || !('root' in content)) return undefined
+  return convertLexicalToHTML({ data: content as never })
 }

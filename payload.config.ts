@@ -15,10 +15,6 @@ import { SiteSettings } from './src/globals/SiteSettings'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-if (process.env.NODE_ENV === 'development') {
-  console.log('[payload.config] DATABASE_URI exists:', !!process.env.DATABASE_URI)
-}
-
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -43,8 +39,8 @@ export default buildConfig({
   sharp,
   plugins: [
     vercelBlobStorage({
-      collections: ['media'],
-      clientUploads: true,
+      collections: { media: true },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
   ],
 })
