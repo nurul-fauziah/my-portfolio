@@ -42,6 +42,15 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Hide scrollbar on horizontal carousels but keep swipe working */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
 /* Cursor reveal wavy */
 @keyframes cr-wavy {
   0%   { transform: scale(1)    rotate(0deg);   border-radius: 42% 58% 62% 38% / 46% 52% 48% 54%; }

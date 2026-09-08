@@ -90,14 +90,12 @@ export function AllProjects({ projects }: { projects: ProjectData[] }) {
           </h1>
         </motion.div>
 
-        {/* Project Grid */}
-        <div className="grid gap-6">
+        {/* Project Carousel */}
+        <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto">
           {displayProjects.map((project, index) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              index={index}
-            />
+            <div key={project.slug} className="w-full flex-none snap-center">
+              <ProjectCard project={project} index={index} />
+            </div>
           ))}
         </div>
       </div>

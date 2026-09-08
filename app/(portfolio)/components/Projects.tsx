@@ -71,13 +71,11 @@ export function Projects({
         </motion.div>
       </div>
 
-      <div className="grid gap-6">
+      <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto">
         {displayed.map((project, index) => (
-          <ProjectCard
-            key={project.slug}
-            project={project}
-            index={index}
-          />
+          <div key={project.slug} className="w-full flex-none snap-center">
+            <ProjectCard project={project} index={index} />
+          </div>
         ))}
       </div>
 
