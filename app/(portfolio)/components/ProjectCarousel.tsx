@@ -13,17 +13,10 @@ import { ProjectCard, type ProjectData } from "./ProjectCard";
  */
 export function ProjectCarousel({ projects }: { projects: ProjectData[] }) {
   const [active, setActive] = useState(0);
-  const [dir, setDir] = useState<1 | -1>(1);
 
   const total = projects.length;
-  const prev = () => {
-    setDir(-1);
-    setActive((a) => (a - 1 + total) % total);
-  };
-  const next = () => {
-    setDir(1);
-    setActive((a) => (a + 1) % total);
-  };
+  const prev = () => setActive((a) => (a - 1 + total) % total);
+  const next = () => setActive((a) => (a + 1) % total);
 
   const current = projects[active];
 
@@ -31,19 +24,14 @@ export function ProjectCarousel({ projects }: { projects: ProjectData[] }) {
     <div className="relative">
       {/* Stage: only the active card is rendered and visible */}
       <div className="relative h-[400px] sm:h-[440px] overflow-hidden py-4">
-        <AnimatePresence custom={dir}>
+        <AnimatePresence>
           {current && (
             <motion.div
               key={current.slug}
-              custom={dir}
-              initial={{
-                opacity: 0,
-                x: dir * 60,
-                scale: 0.96,
-              }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: dir * -60, scale: 0.96 }}
-              transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.3}
@@ -53,7 +41,7 @@ export function ProjectCarousel({ projects }: { projects: ProjectData[] }) {
               }}
               className="absolute inset-x-0 top-1/2 w-full -translate-y-1/2 mx-auto max-w-xl"
             >
-              <div className="rounded-3xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.35)] ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.45)]">
+              <div className="rounded-[30px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.35)] ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.45)]">
                 <ProjectCard project={current} index={active} />
               </div>
             </motion.div>
