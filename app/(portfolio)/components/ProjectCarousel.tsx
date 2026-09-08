@@ -30,20 +30,20 @@ export function ProjectCarousel({ projects }: { projects: ProjectData[] }) {
   return (
     <div className="relative">
       {/* Stage: only the active card is rendered and visible */}
-      <div className="overflow-hidden py-6">
-        <AnimatePresence mode="wait" custom={dir}>
+      <div className="relative h-[400px] sm:h-[440px] overflow-hidden py-4">
+        <AnimatePresence custom={dir}>
           {current && (
             <motion.div
               key={current.slug}
               custom={dir}
               initial={{
                 opacity: 0,
-                x: dir * 80,
-                scale: 0.97,
+                x: dir * 60,
+                scale: 0.96,
               }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: dir * -80, scale: 0.97 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, x: dir * -60, scale: 0.96 }}
+              transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.3}
@@ -51,7 +51,7 @@ export function ProjectCarousel({ projects }: { projects: ProjectData[] }) {
                 if (info.offset.x < -60) next();
                 else if (info.offset.x > 60) prev();
               }}
-              className="mx-auto w-full max-w-5xl"
+              className="absolute inset-x-0 top-1/2 w-full -translate-y-1/2 mx-auto max-w-xl"
             >
               <div className="rounded-3xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.35)] ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.45)]">
                 <ProjectCard project={current} index={active} />
