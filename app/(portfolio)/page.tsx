@@ -159,14 +159,19 @@ export default async function PortfolioPage() {
       s.cursorRevealImage && typeof s.cursorRevealImage === 'object' && 'url' in s.cursorRevealImage
         ? (s.cursorRevealImage.url as string)
         : undefined,
-    resumeOptions: [
-        {
-          label: 'English',
-          href: '/resume/English/CV_English.pdf',
-        },
-        { label: 'Indonesia', href: null },
-        { label: '日本語 (Nihonggo)', href: null },
-      ],
+    resumeOptions: (s.resumes && s.resumes.length
+      ? s.resumes.map((r) => ({
+          label: r.language,
+          href:
+            r.file && typeof r.file === 'object' && 'url' in r.file
+              ? (r.file.url as string)
+              : null,
+        }))
+      : [
+          { label: 'English', href: '/resume/English/CV_English.pdf' },
+          { label: 'Indonesia', href: null },
+          { label: '日本語 (Nihonggo)', href: null },
+        ]),
     theme,
   }
 
