@@ -18,12 +18,12 @@ const dirname = path.dirname(filename)
 // ── Vercel Blob connection diagnostic ──
 // Logs whether the blob token is present and well-formed so upload issues
 // (broken media links / `.json` downloads) are easy to spot at startup.
-const blobToken = process.env.BLOB_READ_WRITE_TOKEN
+const blobToken = process.env.BLB_READ_WRITE_TOKEN
 const storeId = blobToken?.match(/^vercel_blob_rw_([a-z\d]+)_[a-z\d]+$/i)?.[1]?.toLowerCase()
 if (!blobToken) {
-  console.warn('[blob] BLOB_READ_WRITE_TOKEN is NOT set — media uploads will not be stored.')
+  console.warn('[blob] BLB_READ_WRITE_TOKEN is NOT set — media uploads will not be stored.')
 } else if (!storeId) {
-  console.warn('[blob] BLOB_READ_WRITE_TOKEN is malformed (expected vercel_blob_rw_<store>_<key>).')
+  console.warn('[blob] BLB_READ_WRITE_TOKEN is malformed (expected vercel_blob_rw_<store>_<key>).')
 } else {
   console.log(`[blob] connected: https://${storeId}.public.blob.vercel-storage.com`)
 }
@@ -53,7 +53,7 @@ export default buildConfig({
   plugins: [
     vercelBlobStorage({
       collections: { media: true },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLB_READ_WRITE_TOKEN,
     }),
   ],
 })
