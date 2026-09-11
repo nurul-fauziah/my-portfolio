@@ -527,6 +527,10 @@ export interface SiteSetting {
   github?: string | null;
   contactLocation?: string | null;
   copyrightName?: string | null;
+  /**
+   * Tick this to show the maintenance popup on the site.
+   */
+  maintenanceEnabled?: boolean | null;
   themePreset?: ('earthy' | 'ocean' | 'forest' | 'sunset' | 'custom') | null;
   customColors?: {
     /**
@@ -619,6 +623,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   github?: T;
   contactLocation?: T;
   copyrightName?: T;
+  maintenanceEnabled?: T;
   themePreset?: T;
   customColors?:
     | T

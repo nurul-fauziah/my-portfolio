@@ -204,6 +204,19 @@ export const SiteSettings: GlobalConfig = {
           ],
         },
         {
+          label: 'Maintenance',
+          fields: [
+            {
+              name: 'maintenanceEnabled',
+              type: 'checkbox',
+              defaultValue: false,
+              admin: {
+                description: 'Tick this to show the maintenance popup on the site.',
+              },
+            },
+          ],
+        },
+        {
           label: 'Theme',
           fields: [
             {

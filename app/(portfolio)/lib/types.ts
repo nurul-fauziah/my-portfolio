@@ -41,6 +41,7 @@ export type SiteSettingsData = {
   github: string;
   contactLocation: string;
   copyrightName: string;
+  maintenanceEnabled: boolean;
   worksHeading: string;
   cursorRevealImage?: string;
   resumeOptions?: ResumeOption[];

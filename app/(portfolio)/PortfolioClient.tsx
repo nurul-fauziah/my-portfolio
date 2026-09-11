@@ -34,12 +34,12 @@ export default function PortfolioClient({
   siteSettings,
 }: PortfolioClientProps) {
   const [loaded, setLoaded] = useState(false);
-  const [showMaintenance, setShowMaintenance] = useState(false);
+  const [showMaintenance, setShowMaintenance] = useState(
+    !!siteSettings.maintenanceEnabled
+  );
 
   const handleLoadComplete = () => {
     setLoaded(true);
-    // Delay maintenance popup for smooth transition
-    setTimeout(() => setShowMaintenance(true), 800);
   };
 
   const handleCloseMaintenance = () => {

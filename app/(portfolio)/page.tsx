@@ -154,6 +154,7 @@ export default async function PortfolioPage() {
     github: s.github || '',
     contactLocation: s.contactLocation || '',
     copyrightName: s.copyrightName || 'Your Name',
+    maintenanceEnabled: !!s.maintenanceEnabled,
     worksHeading: s.worksHeading || 'A curated collection of digital work shaped with clarity and restraint.',
     cursorRevealImage:
       s.cursorRevealImage && typeof s.cursorRevealImage === 'object' && 'url' in s.cursorRevealImage
